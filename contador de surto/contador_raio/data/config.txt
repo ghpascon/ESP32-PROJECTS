@@ -1,0 +1,5 @@
+nome: ESP_TEST_0001
+rede: PASCON
+senha: 20020903gg
+api: http://52.67.141.45:8080/ws/sensors/sendSensorInformation
+manut_status_ok: 1

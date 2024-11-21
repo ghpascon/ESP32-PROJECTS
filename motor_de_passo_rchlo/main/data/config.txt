@@ -1,0 +1,6 @@
+total_surge_cnt:0
+device_state:0
+nome:ESP_TESTE
+rede:FVLS
+senha:Slvf2zhG
+url:http://52.67.141.45:8080/ws/sensors/sendSensorInformation

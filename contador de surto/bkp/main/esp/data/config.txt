@@ -1,0 +1,6 @@
+total_surge_cnt:0
+device_state:0
+nome:ESP_TESTE
+rede:PASCON
+senha:20020903gg
+url:http://idcontrols.com.br/ws2/sensors/sendSensorInformation

@@ -1,0 +1,4 @@
+nome: MANHATTAN
+rede: PASCON
+senha: 20020903gg
+api: http://52.67.141.45:8080/ws/sensors/sendSensorInformation

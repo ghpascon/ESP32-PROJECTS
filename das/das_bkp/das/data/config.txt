@@ -1,0 +1,8 @@
+mode = 0
+retry = 4
+speed = 2
+password = 5555
+ant_cfg_mode_1 = 20, 80
+ant_cfg_mode_2 = 21, 90
+ant_cfg_mode_3 = 22, 55
+ant_cfg_mode_4 = 23, 45

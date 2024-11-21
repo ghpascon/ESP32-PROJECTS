@@ -1,0 +1,4 @@
+mode = 3
+door_mode = 1
+retry = 4
+speed = 2

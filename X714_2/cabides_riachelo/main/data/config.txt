@@ -1,0 +1,10 @@
+antena:1,on,15,100
+antena:2,on,15,100
+antena:3,on,18,100
+antena:4,on,18,100
+session:1
+start_reading:off
+gpi_start:on
+gpi_stop_delay:1300
+ignore_read:on
+always_send:off

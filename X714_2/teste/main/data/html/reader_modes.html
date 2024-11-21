@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>X714 READER MODES</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+</head>
+
+<body>
+  <div class="container0">
+    <div class="container1">
+      <div class="container2">
+        <label style="position: relative; top: 20px" class="SMTX"
+        >X714-SMARTX</label
+        >
+      </div>
+      <div class="container2">
+        <button onclick="window.location.href='/'">HOME</button>
+      </div>
+    </div>
+    
+    <div id="table_div" class="container1">
+      <table id="config_table">
+        <thead>
+          <tr>
+            <th><h1>MODE</h1></th>
+            <th><h1>VALUE</h1></th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            <td>
+              <label>START READING:</label>
+            </td>
+            <td>
+              <button
+              id="start_reading_button"
+              onclick="fetch('/start_reading')"
+              ></button>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <label>GPI START:</label>
+            </td>
+            <td>
+              <button
+              id="gpi_start_button"
+              onclick="fetch('/gpi_start')"
+              ></button>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <label>IGNORE READ:</label>
+            </td>
+            <td>
+              <button
+              id="ignore_read_button"
+              onclick="fetch('/ignore_read')"
+              ></button>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <label>ALWAYS SEND:</label>
+            </td>
+            <td>
+              <button
+              id="always_send_button"
+              onclick="fetch('/always_send')"
+              ></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="container1">
+      <button onclick="window.location.href='/reader'">READER</button>
+    </div>
+  </div>
+</body>
+
+<script>
+  function update_html() {
+    update_elements();
+  }
+  setInterval(update_html, 500);
+  
+  function update_elements() {
+    fetch("/modes_att")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("gpi_start_button").innerText =
+      data.gpi_start_label;
+      document.getElementById("gpi_start_button").style.backgroundColor =
+      data.gpi_start_color;
+      
+      document.getElementById("start_reading_button").innerText =
+      data.start_reading_label;
+      document.getElementById("start_reading_button").style.backgroundColor =
+      data.start_reading_color;
+      
+      document.getElementById("ignore_read_button").innerText =
+      data.ignore_read_label;
+      document.getElementById("ignore_read_button").style.backgroundColor =
+      data.ignore_read_color;
+      
+      document.getElementById("always_send_button").innerText =
+      data.always_send_label;
+      document.getElementById("always_send_button").style.backgroundColor =
+      data.always_send_color;
+    })
+    .catch((error) => console.error("Erro:", error));
+  }
+</script>
+</html>

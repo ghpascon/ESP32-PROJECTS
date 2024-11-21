@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>X714 GPO TEST</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+</head>
+
+<body>
+  <div class="container0">
+    <div class="container1">
+      <div class="container2">
+        <label style="position: relative; top: 20px" class="SMTX"
+        >X714-SMARTX</label
+        >
+      </div>
+      <div class="container2">
+        <button onclick="window.location.href='/'">HOME</button>
+      </div>
+    </div>
+    
+    <div id="table_div" class="container1">
+      <table id="config_table">
+        <thead>
+          <tr>
+            <th><h1>GPO</h1></th>
+            <th><h1>VALUE</h1></th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
+            <td>
+              <label>1</label>
+            </td>
+            <td>
+              <button
+              id="gpo_1_bt"
+              onclick="fetch('/gpo_1_bt')"
+              ></button>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <label>2</label>
+            </td>
+            <td>
+              <button
+              id="gpo_2_bt"
+              onclick="fetch('/gpo_2_bt')"
+              ></button>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
+              <label>3</label>
+            </td>
+            <td>
+              <button
+              id="gpo_3_bt"
+              onclick="fetch('/gpo_3_bt')"
+              ></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</body>
+
+<script>
+  function update_html() {
+    update_elements();
+  }
+  setInterval(update_html, 500);
+  
+  function update_elements() {
+    fetch("/gpo_att")
+    .then((response) => response.json())
+    .then((data) => {
+      
+      document.getElementById("gpo_1_bt").innerText =
+      data.gpo_1_bt_label;
+      document.getElementById("gpo_1_bt").style.backgroundColor =
+      data.gpo_1_bt_color;
+      
+      document.getElementById("gpo_2_bt").innerText =
+      data.gpo_2_bt_label;
+      document.getElementById("gpo_2_bt").style.backgroundColor =
+      data.gpo_2_bt_color;
+      
+      document.getElementById("gpo_3_bt").innerText =
+      data.gpo_3_bt_label;
+      document.getElementById("gpo_3_bt").style.backgroundColor =
+      data.gpo_3_bt_color;
+    })
+    .catch((error) => console.error("Erro:", error));
+  }
+</script>
+</html>
