@@ -6,25 +6,25 @@
 #include <LittleFS.h>
 
 //classes
-#include "classes/pins/_pins.h"
+#include "classes/pins/_main.h"
 
-#include "classes/antena/_antena.h"
+#include "classes/antena/_main.h"
 #include "classes/antena/antena_commands.h"
 
-#include "classes/tag/_tag.h"
+#include "classes/tag/_main.h"
 #include "classes/tag/tag_commands.h"
 
-#include "classes/config_file/_config_file.h"
+#include "classes/config_file/_main.h"
 
-#include "classes/last_packs/_last_packs.h"
+#include "classes/last_packs/_main.h"
 
-#include "classes/reader/_reader.h"
+#include "classes/reader/_main.h"
 
-#include "classes/serial_commands/_serial_commands.h"
+#include "classes/serial_commands/_main.h"
 
-#include "classes/web_server/_web_server.h"
+#include "classes/web_server/_main.h"
 
-#include "classes/rgb/_rgb.h"
+#include "classes/rgb/_main.h"
 
 
 
