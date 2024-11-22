@@ -36,6 +36,24 @@ private:
             int sep = cmd.indexOf(",");
             box_num = cmd.substring(0, sep);
             box_qtd = cmd.substring(sep + 1).toInt();
+            Serial.println("#BOX:" + box_num + "," + String(box_qtd));
+        }
+
+        else if (cmd.startsWith("#cx:"))
+        {
+            cmd.replace("#cx:", "");
+            if (cmd == "ok")
+            {
+                cx_ok = true;
+                cx_erro = false;
+                Serial.println("#CX:OK");
+            }
+            else
+            {
+                cx_ok = false;
+                cx_erro = true;
+                Serial.println("#CX:ERROR");
+            }
         }
     }
 };
