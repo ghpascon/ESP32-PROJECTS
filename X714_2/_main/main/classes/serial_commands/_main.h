@@ -41,7 +41,7 @@ public:
         {
             tag_commands.tag_data_display();
         }
-        
+
         else if (cmd == "#clear")
         {
             tag_commands.clear_tags();
@@ -56,6 +56,7 @@ public:
         {
             cmd.replace("#set_cmd:", "");
             serial_set_all_cmd(cmd);
+            reader_module.setup_reader();
         }
 
         else

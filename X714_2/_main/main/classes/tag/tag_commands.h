@@ -50,6 +50,7 @@ public:
 			tags_to_send += "@" + tags[i].epc;
 		}
 		Serial.println(tags_to_send);
+		clear_tags();
 	}
 
 	void clear_tags()

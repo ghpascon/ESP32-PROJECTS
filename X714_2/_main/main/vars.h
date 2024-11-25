@@ -1,4 +1,4 @@
-const bool debug_mode = true;
+const bool debug_mode = false;
 
 const bool one_ant = true;
 

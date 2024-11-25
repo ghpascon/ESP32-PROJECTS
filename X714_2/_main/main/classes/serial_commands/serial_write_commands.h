@@ -8,7 +8,7 @@ public:
             last_read_on = true;
             read_on = false;
         }
-        
+
         const byte tag_size = 24;
         const byte password_size = 8;
 
@@ -53,7 +53,7 @@ public:
 
         write_tag_on = true;
     }
-    
+
     void verificar_write()
     {
         if (!write_tag_on)
@@ -70,6 +70,7 @@ public:
         }
     }
 
+private:
     void gerar_bytes(String current_epc, String new_epc, String password, bool current_null)
     {
         const byte byte_tag_count = 12;

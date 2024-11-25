@@ -34,3 +34,5 @@ extern const byte max_power;
 extern const byte min_rssi;
 extern byte session;
 extern byte max_session;
+
+extern READER reader_module;

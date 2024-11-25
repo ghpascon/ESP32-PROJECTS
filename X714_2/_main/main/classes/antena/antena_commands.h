@@ -29,6 +29,6 @@ public:
 			antena[i].power = set_power;
 		}
 
-		Serial.println(set_power, DEC);
+		Serial.print(" - " + String(set_power, DEC));
 	}
 };

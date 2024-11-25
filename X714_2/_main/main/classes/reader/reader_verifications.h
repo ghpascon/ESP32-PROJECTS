@@ -1,4 +1,4 @@
-class reader_verifications : public reader_read_off_commands
+class reader_verifications 
 {
 public:
 	void reader_verify()
@@ -24,7 +24,6 @@ public:
 		else
 		{
 			last_packs.save();
-			read_off_command();
 		}
 	}
 
