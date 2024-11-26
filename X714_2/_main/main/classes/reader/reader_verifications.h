@@ -44,7 +44,7 @@ public:
 	
 	void check_reader_connection()
 	{
-		const int timeout_reader_connection = 10000;
+		const int timeout_reader_connection = 5000;
 		static unsigned long current_timeout_reader_connection = 0;
 		if (setup_done)
 			current_timeout_reader_connection = millis();

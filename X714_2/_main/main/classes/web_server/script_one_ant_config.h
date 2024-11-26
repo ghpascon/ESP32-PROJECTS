@@ -15,12 +15,8 @@ void config_one_ant_script()
       
         for (int i = 0; i < 1; i++)
         {
-            if (antena[i].rssi < min_rssi)
-                antena[i].rssi = min_rssi;
-            if (antena[i].power < min_power)
-                antena[i].power = min_power;
-            if (antena[i].power > max_power)
-                antena[i].power = max_power;
+        antena[i].rssi = max(antena[i].rssi, min_rssi);
+        antena[i].power = constrain(antena[i].power, min_power, max_power);
         }
 
         if (debug_mode)

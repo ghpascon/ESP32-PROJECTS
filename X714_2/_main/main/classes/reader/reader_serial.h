@@ -6,7 +6,7 @@ public:
 		if (!Serial2.available())
 			return;
 
-		const int full_cmd_timeout = 4000;
+		const int full_cmd_timeout = 3000;
 		unsigned long current_full_cmd_timeout = millis();
 
 		answer_rec = true;

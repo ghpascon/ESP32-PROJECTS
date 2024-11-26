@@ -59,12 +59,8 @@ private:
 
 			byte current_rssi = parameter.toInt();
 
-			if (current_power > max_power)
-				current_power = max_power;
-			if (current_power < min_power)
-				current_power = min_power;
-			if (current_rssi < min_rssi)
-				current_rssi = min_rssi;
+			current_power = constrain(current_power, min_power, max_power);
+			current_rssi = max(current_rssi, min_rssi);
 
 			if (one_ant)
 				current_active = "on";

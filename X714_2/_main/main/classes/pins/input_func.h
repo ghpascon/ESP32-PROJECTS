@@ -3,57 +3,34 @@ class input_func
 public:
 	void check_inputs()
 	{
-		const int debounce_time = 100;
+
 		static unsigned long current_in_1_time = 0;
+		in_1 = debounce(in_1, in_1_pin, current_in_1_time);
+
 		static unsigned long current_in_2_time = 0;
+		in_2 = debounce(in_2, in_2_pin, current_in_2_time);
+
 		static unsigned long current_in_3_time = 0;
-
-		if (!in_1)
-		{
-			if (digitalRead(in_1_pin))
-				current_in_1_time = millis();
-			if (millis() - current_in_1_time > debounce_time)
-				in_1 = true;
-		}
-		else
-		{
-			if (!digitalRead(in_1_pin))
-				current_in_1_time = millis();
-			if (millis() - current_in_1_time > debounce_time)
-				in_1 = false;
-		}
-
-		if (!in_2)
-		{
-			if (digitalRead(in_2_pin))
-				current_in_2_time = millis();
-			if (millis() - current_in_2_time > debounce_time)
-				in_2 = true;
-		}
-		else
-		{
-			if (!digitalRead(in_2_pin))
-				current_in_2_time = millis();
-			if (millis() - current_in_2_time > debounce_time)
-				in_2 = false;
-		}
-
-		if (!in_3)
-		{
-			if (digitalRead(in_3_pin))
-				current_in_3_time = millis();
-			if (millis() - current_in_3_time > debounce_time)
-				in_3 = true;
-		}
-		else
-		{
-			if (!digitalRead(in_3_pin))
-				current_in_3_time = millis();
-			if (millis() - current_in_3_time > debounce_time)
-				in_3 = false;
-		}
+		in_3 = debounce(in_3, in_3_pin, current_in_3_time);
 
 		gpi_state();
+	}
+
+	bool debounce(bool state, int pin, unsigned long &last_time, int debounce_time=50)
+	{
+		if (digitalRead(pin) == state)
+		{
+			if (millis() - last_time > debounce_time)
+			{
+				state = !state;
+			}
+		}
+		else
+		{
+			last_time = millis();
+		}
+
+		return state;
 	}
 
 	void gpi_state()

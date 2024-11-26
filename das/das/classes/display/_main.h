@@ -44,7 +44,7 @@ public:
 
         if (millis() > load_time)
         {
-            Lcm.changePicId(mode);
+            Lcm.changePicId(op_screen);
             loaded = true;
         }
     }

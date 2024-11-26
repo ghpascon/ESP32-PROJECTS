@@ -42,18 +42,9 @@ private:
         else if (cmd.startsWith("#cx:"))
         {
             cmd.replace("#cx:", "");
-            if (cmd == "ok")
-            {
-                cx_ok = true;
-                cx_erro = false;
-                Serial.println("#CX:OK");
-            }
-            else
-            {
-                cx_ok = false;
-                cx_erro = true;
-                Serial.println("#CX:ERROR");
-            }
+            cx_ok = cmd == "ok";
+            cx_erro = !cx_ok;
+            Serial.println("#CX:" + cx_ok ? "OK" : "ERROR");
         }
     }
 };

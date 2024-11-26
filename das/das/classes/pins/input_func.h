@@ -3,121 +3,40 @@ class input_func
 public:
 	void check_inputs()
 	{
-		const int debounce_time = 50;
+
 		static unsigned long current_sensor_in_time = 0;
+		sensor_in = debounce(sensor_in, digitalRead(sensor_in_pin), current_sensor_in_time);
 		static unsigned long current_sensor_out_time = 0;
+		sensor_out = debounce(sensor_out, digitalRead(sensor_out_pin), current_sensor_out_time);
+
 		static unsigned long current_emg_time = 0;
+		emg = debounce(emg, !digitalRead(emg_pin), current_emg_time);
+
 		static unsigned long current_p1_close_time = 0;
+		p1_close = debounce(p1_close, digitalRead(p1_close_pin), current_p1_close_time);
 		static unsigned long current_p1_open_time = 0;
+		p1_open = debounce(p1_open, digitalRead(p1_open_pin), current_p1_open_time);
 		static unsigned long current_p2_close_time = 0;
+		p2_close = debounce(p2_close, digitalRead(p2_close_pin), current_p2_close_time);
 		static unsigned long current_p2_open_time = 0;
+		p2_open = debounce(p2_open, digitalRead(p2_open_pin), current_p2_open_time);
+	}
 
-		// in_out
-		if (!sensor_in)
+private:
+	bool debounce(bool state, bool current_read, unsigned long &last_time, int debounce_time = 50, )
+	{
+		if (current_read == state)
 		{
-			if (digitalRead(sensor_in_pin))
-				current_sensor_in_time = millis();
-			if (millis() - current_sensor_in_time > debounce_time)
-				sensor_in = true;
+			if (millis() - last_time > debounce_time)
+			{
+				state = !state;
+			}
 		}
 		else
 		{
-			if (!digitalRead(sensor_in_pin))
-				current_sensor_in_time = millis();
-			if (millis() - current_sensor_in_time > debounce_time)
-				sensor_in = false;
+			last_time = millis();
 		}
 
-		if (!sensor_out)
-		{
-			if (digitalRead(sensor_out_pin))
-				current_sensor_out_time = millis();
-			if (millis() - current_sensor_out_time > debounce_time)
-				sensor_out = true;
-		}
-		else
-		{
-			if (!digitalRead(sensor_out_pin))
-				current_sensor_out_time = millis();
-			if (millis() - current_sensor_out_time > debounce_time)
-				sensor_out = false;
-		}
-
-		// emg
-		if (!emg)
-		{
-			if (!digitalRead(emg_pin))
-				current_emg_time = millis();
-			if (millis() - current_emg_time > debounce_time)
-				emg = true;
-		}
-		else
-		{
-			if (digitalRead(emg_pin))
-				current_emg_time = millis();
-			if (millis() - current_emg_time > debounce_time)
-				emg = false;
-		}
-
-		//doors
-		if (!p1_close)
-		{
-			if (digitalRead(p1_close_pin))
-				current_p1_close_time = millis();
-			if (millis() - current_p1_close_time > debounce_time)
-				p1_close = true;
-		}
-		else
-		{
-			if (!digitalRead(p1_close_pin))
-				current_p1_close_time = millis();
-			if (millis() - current_p1_close_time > debounce_time)
-				p1_close = false;
-		}
-
-		if (!p1_open)
-		{
-			if (digitalRead(p1_open_pin))
-				current_p1_open_time = millis();
-			if (millis() - current_p1_open_time > debounce_time)
-				p1_open = true;
-		}
-		else
-		{
-			if (!digitalRead(p1_open_pin))
-				current_p1_open_time = millis();
-			if (millis() - current_p1_open_time > debounce_time)
-				p1_open = false;
-		}
-
-		if (!p2_close)
-		{
-			if (digitalRead(p2_close_pin))
-				current_p2_close_time = millis();
-			if (millis() - current_p2_close_time > debounce_time)
-				p2_close = true;
-		}
-		else
-		{
-			if (!digitalRead(p2_close_pin))
-				current_p2_close_time = millis();
-			if (millis() - current_p2_close_time > debounce_time)
-				p2_close = false;
-		}
-
-		if (!p2_open)
-		{
-			if (digitalRead(p2_open_pin))
-				current_p2_open_time = millis();
-			if (millis() - current_p2_open_time > debounce_time)
-				p2_open = true;
-		}
-		else
-		{
-			if (!digitalRead(p2_open_pin))
-				current_p2_open_time = millis();
-			if (millis() - current_p2_open_time > debounce_time)
-				p2_open = false;
-		}
+		return state;
 	}
 };
