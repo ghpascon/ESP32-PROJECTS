@@ -35,3 +35,5 @@ extern bool read_on;
 extern const bool debug_mode;
 
 extern LAST_PACKS last_packs;
+
+extern const byte max_power;

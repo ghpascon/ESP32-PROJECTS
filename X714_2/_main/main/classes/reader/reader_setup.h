@@ -182,4 +182,17 @@ public:
 		crc2 = (crcValue >> 8) & 0xFF;
 		write_bytes(reader_query, sizeof(reader_query), crc1, crc2);
 	}
+
+	void set_write_power(byte power)
+	{
+		byte reader_time[] = {
+			0x05,
+			0xff,
+			0x79,
+			0x80 + power};
+		crcValue = uiCrc16Cal(reader_time, sizeof(reader_time));
+		crc1 = crcValue & 0xFF;
+		crc2 = (crcValue >> 8) & 0xFF;
+		write_bytes(reader_time, sizeof(reader_time), crc1, crc2);
+	}
 };

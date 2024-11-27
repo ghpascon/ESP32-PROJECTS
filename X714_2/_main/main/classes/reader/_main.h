@@ -63,6 +63,8 @@ public:
 			set_retry_write(0x03);
 		else if (step == 11)
 			query_parameters();
+		else if (step == 12)
+			set_write_power(max_power);
 		else
 		{
 			Serial.println("#SETUP_DONE");
