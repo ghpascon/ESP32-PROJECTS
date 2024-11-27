@@ -5,20 +5,20 @@ public:
 	{
 
 		static unsigned long current_in_1_time = 0;
-		in_1 = debounce(in_1, in_1_pin, current_in_1_time);
+		in_1 = debounce(in_1, digitalRead(in_1_pin), current_in_1_time);
 
 		static unsigned long current_in_2_time = 0;
-		in_2 = debounce(in_2, in_2_pin, current_in_2_time);
+		in_2 = debounce(in_2, digitalRead(in_2_pin), current_in_2_time);
 
 		static unsigned long current_in_3_time = 0;
-		in_3 = debounce(in_3, in_3_pin, current_in_3_time);
+		in_3 = debounce(in_3, digitalRead(in_3_pin), current_in_3_time);
 
 		gpi_state();
 	}
 
-	bool debounce(bool state, int pin, unsigned long &last_time, int debounce_time=50)
+	bool debounce(bool state, bool current_state, unsigned long &last_time, int debounce_time = 50)
 	{
-		if (digitalRead(pin) == state)
+		if (current_state == state)
 		{
 			if (millis() - last_time > debounce_time)
 			{
