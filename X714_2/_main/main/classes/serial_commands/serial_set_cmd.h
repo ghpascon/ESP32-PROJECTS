@@ -29,6 +29,7 @@ private:
     {
         bool cmd_ok = true;
         Serial.print("#CMD: " + cmd);
+        X714_USB.print("#CMD: " + cmd);
 
         if (cmd.startsWith("set_ant:"))
         {
@@ -44,10 +45,16 @@ private:
                 session = 0x00;
         }
 
-        else if (cmd.startsWith("set_power_all:"))
+        else if (cmd.startsWith("read_power:"))
         {
-            cmd.replace("set_power_all:", "");
+            cmd.replace("read_power:", "");
             antena_commands.set_power_all(cmd.toInt());
+        }
+
+        else if (cmd.startsWith("write_power:"))
+        {
+            cmd.replace("write_power:", "");
+            write_power = constrain(cmd.toInt(), min_power, max_power);
         }
 
         else if (cmd == "start_reading:off")
@@ -95,8 +102,9 @@ private:
         {
             cmd_ok = false;
         }
-
+        
         Serial.println(cmd_ok ? " #OK" : " #ERRO");
+        X714_USB.println(cmd_ok ? " #OK" : " #ERRO");
     }
 
     void serial_set_ant(String cmd)

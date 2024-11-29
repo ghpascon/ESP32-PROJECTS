@@ -23,7 +23,7 @@ public:
 	}
 
 private:
-	bool debounce(bool state, bool current_read, unsigned long &last_time, int debounce_time = 50, )
+	bool debounce(bool state, bool current_read, unsigned long &last_time, int debounce_time = 50 )
 	{
 		if (current_read == state)
 		{

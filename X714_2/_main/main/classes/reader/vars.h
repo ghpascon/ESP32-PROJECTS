@@ -36,4 +36,6 @@ extern const bool debug_mode;
 
 extern LAST_PACKS last_packs;
 
-extern const byte max_power;
+extern byte write_power;
+
+extern USBCDC X714_USB;

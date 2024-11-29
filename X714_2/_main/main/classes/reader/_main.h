@@ -64,10 +64,11 @@ public:
 		else if (step == 11)
 			query_parameters();
 		else if (step == 12)
-			set_write_power(max_power);
+			set_write_power(write_power);
 		else
 		{
 			Serial.println("#SETUP_DONE");
+			X714_USB.println("#SETUP_DONE");
 			setup_done = true;
 		}
 	}

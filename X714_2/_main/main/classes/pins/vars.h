@@ -19,3 +19,5 @@ unsigned long current_led_ant_time[] = {0, 0, 0, 0};
 const int gpo_qtd = 3;
 const int gpo_pin[gpo_qtd] = {7, 16, 18};
 bool gpo[gpo_qtd] = {false, false, false};
+
+extern USBCDC X714_USB;

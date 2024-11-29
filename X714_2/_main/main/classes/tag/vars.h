@@ -1,3 +1,4 @@
+extern USBCDC X714_USB;
 
 extern const int max_tags;
 extern TAG tags[];

@@ -18,17 +18,20 @@ const int max_tags = 1000;
 TAG tags[max_tags];
 int current_tag = 0;
 
-
 //ant_config
 const int ant_qtd = 4;
 ANTENA antena[ant_qtd];
 ANTENA_COMMANDS antena_commands;
 const byte min_power = 5;
-const byte max_power = one_ant ? 20 : 30;
+const byte max_power = 30;
+// const byte max_power = one_ant ? 20 : 30;
 const byte min_rssi = 40;
 
-//SERIAL
+byte write_power = max_power;
+
+// SERIAL
 SERIAL_PORT serial_port;
+USBCDC X714_USB;
 
 //WATCHDOG
 #define WATCHDOG_TIMEOUT 10

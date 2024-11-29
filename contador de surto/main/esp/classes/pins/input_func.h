@@ -14,9 +14,7 @@ public:
 
 		if (!surge)
 		{
-			if (digitalRead(surge_pin))
-				current_on_surge = millis();
-			if (millis() - current_on_surge > on_surge)
+			if (!digitalRead(surge_pin))
 			{
 				surge = true;
 				current_surge_time = millis();

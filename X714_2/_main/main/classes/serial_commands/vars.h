@@ -1,8 +1,9 @@
+#include "USB.h"
+extern USBCDC X714_USB;
+
 #define tx_reader_module 13
 #define rx_reader_module 14
 
-#define tx_x714 19
-#define rx_x714 20
 
 extern READER reader_module;
 
@@ -36,3 +37,5 @@ extern byte session;
 extern byte max_session;
 
 extern READER reader_module;
+
+extern byte write_power;
