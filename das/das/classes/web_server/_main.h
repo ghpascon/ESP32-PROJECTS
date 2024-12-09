@@ -47,6 +47,8 @@ public:
     current_status += "<br>";
     current_status += "READING: " + String(read_on ? "ON" : "OFF");
     current_status += "<br>";
+    current_status += "BOX_INSIDE: " + String(box_inside ? "ON" : "OFF");
+    current_status += "<br>";
     current_status += "<br>";
     current_status += "PERFIL: " + String(mode - 2);
     current_status += "<br>";

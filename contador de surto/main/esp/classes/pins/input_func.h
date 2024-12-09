@@ -1,3 +1,8 @@
+void IRAM_ATTR handleInterrupt()
+{
+	surge = true;
+}
+
 class input_func
 {
 public:
@@ -12,18 +17,12 @@ public:
 		const int debounce_time = 1000;
 		static unsigned long current_dps_time = 0;
 
-		if (!surge)
-		{
-			if (!digitalRead(surge_pin))
-			{
-				surge = true;
-				current_surge_time = millis();
-			}
-		}
-		else
+		if (surge)
 		{
 			if (millis() - current_surge_time > surge_time)
 				surge = false;
+		}else{
+			current_surge_time = millis();
 		}
 
 		if (!dps)

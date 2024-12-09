@@ -1,6 +1,8 @@
 class output_func
 {
 public:
+		unsigned long current_slow_time = 0;
+
 	void set_outputs()
 	{
 		const int enable_time = 10000;
@@ -9,16 +11,23 @@ public:
 		{
 			step_motor_on();
 			current_enable_time = millis();
+			
+		}else{
+			current_slow_time = millis();
 		}
 		// motor_reverse_clp ? pinMode(motor_reverse_pin, INPUT_PULLUP) : pinMode(motor_reverse_pin, OUTPUT);
 
-		 digitalWrite(enable_driver, (millis() - current_enable_time > enable_time) ? HIGH : LOW);
+		digitalWrite(enable_driver, (millis() - current_enable_time > enable_time) ? HIGH : LOW);
 	}
 
 private:
 	void step_motor_on()
 	{
-		const int motor_time = 40;
+		static bool slow = false;
+
+		slow = (millis() - current_slow_time < 1000);
+
+		const int motor_time = slow ? 120 : 40;
 		static unsigned long current_motor_time = 0;
 
 		if (current_motor_time > micros())

@@ -18,9 +18,9 @@ public:
 		pinMode(p2_open_pin, INPUT_PULLUP);
 
 		// outputs
-		pinMode(motor_pin, OUTPUT);
-		pinMode(motor_reverse_pin, OUTPUT);
-		pinMode(speed_1_pin, OUTPUT);
-		pinMode(speed_2_pin, OUTPUT);
+		pinMode(motor_pin, INPUT_PULLUP);
+		pinMode(motor_reverse_pin, INPUT_PULLUP);
+		pinMode(speed_1_pin, INPUT_PULLUP);
+		pinMode(speed_2_pin, INPUT_PULLUP);
 	}
 };

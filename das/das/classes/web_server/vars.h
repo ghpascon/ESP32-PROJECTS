@@ -22,3 +22,6 @@ extern bool p2_open;
 
 extern String box_num;
 extern int box_qtd;
+
+extern bool box_inside ;
+extern const bool debug_mode;

@@ -58,14 +58,18 @@ private:
 			parameter.replace("speed=", "");
 			speed = parameter.toInt();
 		}
-		
-	}
 
+		else if (parameter.startsWith("answer_timeout="))
+		{
+			parameter.replace("answer_timeout=", "");
+			answer_timeout = parameter.toInt();
+		}
+	}
 	bool check_save()
 	{
 		static bool first_time = true;
 		static String last_string;
-		const String current_string = String(mode)+String(door_mode) + String(retry) + String(speed);
+		const String current_string = String(mode) + String(door_mode) + String(retry) + String(speed);
 
 		if (last_string == current_string)
 			return false;
@@ -99,6 +103,7 @@ public:
 		writeFile("door_mode=" + String(door_mode));
 		writeFile("retry=" + String(retry));
 		writeFile("speed=" + String(speed));
+		writeFile("answer_timeout=" + String(answer_timeout));
 	}
 
 	void get_config()

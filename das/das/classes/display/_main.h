@@ -25,9 +25,11 @@ public:
         speed_display.write(speed);
 
         String instruction_label_msg = instruction_messages[step];
+        if (step == 6 || step == 7)
+            instruction_label_msg += "\n" + state_msg;
         display_instruction_label.write(instruction_label_msg);
 
-        String box_label = "BOX NUMBER:\n" + String(box_num) + "\nQTD: " + String(box_qtd);
+        String box_label = "NUMERO CAIXA:\n" + String(box_num) + "\nQTD ESPERADA:\n" + String(box_qtd);
         display_box_label.write(box_label);
 
         serial_port.send_data();

@@ -18,6 +18,17 @@ public:
 private:
     void check_box_inside()
     {
+        if (box_num == "" || box_qtd < 1)
+            return;
+
+        const int time = 500;
+        static unsigned long current_time = 0;
+        if (box_inside)
+            current_time = millis();
+
+        if (millis() - current_time < time)
+            return;
+
         if (sensor_in)
         {
             box_inside = true;
@@ -65,6 +76,8 @@ private:
         else if (door_mode == 3)
             door_mode_3();
 
+        reprove();
+
         if (box_num == "" || box_qtd < 1)
         {
             turn_all_off();
@@ -79,6 +92,7 @@ private:
             motor_reverse = false;
             cx_erro = false;
             read_on = false;
+            readed = true;
         }
         if (cx_erro)
         {
@@ -86,21 +100,41 @@ private:
             motor_reverse = true;
             cx_ok = false;
             read_on = false;
+            readed = true;
         }
     }
 
     void check_door_sensors()
     {
+        const int time = 1000;
+        static unsigned long current_time = 0;
+        bool aux_motor = false;
+
+        if (!p1_open && !p1_close && !p2_open && !p2_close)
+            readed = false;
+
+        if (!cx_erro && !cx_ok)
+            return;
+
         if (cx_ok)
         {
-            motor = !motor_reverse && !p2_close && !p2_open;
+            aux_motor = !motor_reverse && !p2_close && !p2_open;
         }
-        if (cx_erro)
+        else if (cx_erro)
         {
-            motor = motor_reverse && !p1_close && !p1_open;
+            aux_motor = motor_reverse && !p1_close && !p1_open;
         }
+
+        if (!aux_motor)
+            current_time = millis();
+
+        motor = (millis() - current_time > time);
     }
 
+    bool close_door_step()
+    {
+        return ((step == 3 || step == 4));
+    }
     void check_error()
     {
         if (emg)
@@ -115,22 +149,16 @@ private:
             turn_all_off();
         }
 
-        const int timeout_motor = 5000;
+        static const int timeout_motor = answer_timeout;
         static unsigned long current_timeout_motor = 0;
-        const int timeout_state = 5000;
+        
+        static const int timeout_state = 7000;
         static unsigned long current_timeout_state = 0;
 
-        if (!box_inside)
+        if (!box_inside || motor || readed || close_door_step())
             current_timeout_motor = millis();
-        else
-        {
-            if (motor || emg)
-            {
-                current_timeout_motor = millis();
-            }
-        }
 
-        if (millis() - current_timeout_motor > current_timeout_motor)
+        if (millis() - current_timeout_motor > timeout_motor)
         {
             cx_erro = true;
         }
@@ -144,7 +172,7 @@ private:
             box_off();
         }
 
-        const int timeout_motor_on = 5000;
+        const int timeout_motor_on = 7000;
         static unsigned long current_timeout_motor_on = 0;
         if (!motor)
             current_timeout_motor_on = millis();
@@ -165,6 +193,8 @@ private:
         cx_ok = false;
         cx_erro = false;
         turn_off = false;
+        box_num = "";
+        box_qtd = 0;
     }
 
     void turn_all_off()

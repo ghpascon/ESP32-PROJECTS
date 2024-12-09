@@ -9,10 +9,13 @@ extern byte retry;
 extern byte speed;
 extern byte door_mode;
 
-extern const String instruction_messages[];
 extern byte step;
 extern String box_num;
 extern int box_qtd;
 
 extern bool cx_ok;
 extern bool cx_erro;
+
+extern String state_msg;
+
+extern const bool debug_mode;

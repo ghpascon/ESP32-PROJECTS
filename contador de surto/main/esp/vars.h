@@ -30,3 +30,6 @@ String senha;
 String url;
 
 // String api = "http://52.67.141.45:8080/ws/sensors/sendSensorInformation";
+
+LIGHTNING_SENSOR lightning_sensor;
+byte lightning_distance = 0x00;

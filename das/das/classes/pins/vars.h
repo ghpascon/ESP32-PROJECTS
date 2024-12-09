@@ -31,3 +31,10 @@ bool motor_reverse = false;
 extern byte speed;
 
 extern bool read_on;
+
+extern String status_msg;
+extern String box_num;
+extern int box_qtd;
+
+extern bool box_inside;
+extern byte door_mode;

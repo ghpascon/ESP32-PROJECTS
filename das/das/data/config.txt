@@ -1,4 +1,5 @@
 mode = 3
 door_mode = 1
-retry = 4
+retry = 5
 speed = 2
+answer_timeout = 10000

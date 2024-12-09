@@ -4,6 +4,7 @@
 #include "esp_task_wdt.h"
 
 //classes
+#include "classes/lightning_sensor/_main.h"
 #include "classes/pins/_pins.h"
 #include "classes/config_file/_config_file.h"
 #include "classes/web_server/_web_server.h"

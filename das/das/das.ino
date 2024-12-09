@@ -3,8 +3,8 @@
 
 void setup() {
   esp_task_wdt_init(WATCHDOG_TIMEOUT, true);
-  esp_task_wdt_add(NULL); 
-  
+  esp_task_wdt_add(NULL);
+
   serial_port.setup();
   lcm_display.setup();
   pins.setup();
@@ -18,23 +18,40 @@ void setup() {
   config_file_commands.get_config();
 
   web_server.setup();
+
+  start_task_1();
+}
+
+void start_task_1() {
+  xTaskCreatePinnedToCore(
+    async_task_1,  // Função da tarefa
+    "async_1",     // Nome da tarefa
+    4096,          // Tamanho da pilha
+    NULL,          // Parâmetros para a tarefa
+    1,             // Prioridade da tarefa
+    NULL,          // Handle da tarefa
+    1              // Núcleo (Core 1)
+  );
+}
+
+static void async_task_1(void *pvParameters) {
+  while (true) {
+    serial_port.check();
+
+    lcm_display.check();
+    lcm_display.set_msg();
+    lcm_display.send_data();
+    lcm_display.load_screen_on_start();
+
+    led_rgb.state();
+
+    config_file_commands.save_config();
+  }
 }
 
 void loop() {
   esp_task_wdt_reset();
-
-  serial_port.check();
-
-  lcm_display.check();
-  lcm_display.set_msg();
-  lcm_display.send_data();
-  lcm_display.load_screen_on_start();
-
   pins.check_inputs();
   motor_state.functions();
   pins.set_outputs();
-
-  led_rgb.state();
-
-  config_file_commands.save_config();
 }

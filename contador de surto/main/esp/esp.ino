@@ -13,6 +13,8 @@ void setup() {
   setup_mode ? esp_web_server.setup() : esp_post.setup();
 
   serial_port.get_data();
+
+  lightning_sensor.setup();
 }
 
 void loop() {
@@ -32,4 +34,5 @@ void setup_mode_off() {
   esp_post.is_connected();
   output_surge.check();
   pins.set_outputs();
+  lightning_sensor.check();
 }

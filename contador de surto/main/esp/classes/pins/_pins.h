@@ -8,6 +8,8 @@ public:
 	void setup()
 	{
 		pinMode(surge_pin, INPUT_PULLUP);
+		attachInterrupt(digitalPinToInterrupt(surge_pin), handleInterrupt, FALLING);
+
 		pinMode(dps_pin, INPUT_PULLUP);
 
 		pinMode(out_dps, OUTPUT);

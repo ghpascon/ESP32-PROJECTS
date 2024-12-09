@@ -11,3 +11,5 @@ extern ESP_POST esp_post;
 extern String nome;
 
 extern bool need_post ;
+
+extern byte lightning_distance;

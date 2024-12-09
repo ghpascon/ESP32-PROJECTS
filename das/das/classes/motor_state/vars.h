@@ -1,4 +1,4 @@
-bool integrated = false;
+extern const bool integrated;
 
 extern bool sensor_in;
 extern bool sensor_out;
@@ -27,3 +27,10 @@ extern bool p2_open;
 
 extern String box_num;
 extern int box_qtd;
+
+extern byte step;
+
+extern bool readed;
+
+extern int answer_timeout;
+

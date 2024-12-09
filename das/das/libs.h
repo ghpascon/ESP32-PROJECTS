@@ -5,6 +5,9 @@
 
 #include <LittleFS.h>
 
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+
 //classes
 #include "classes/config_file/_main.h"
 #include "classes/serial_commands/_main.h"

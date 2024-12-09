@@ -18,6 +18,7 @@ public:
         if (current_retry_cnt > retry)
         {
             turn_all_off();
+            readed = true;
             if (!integrated)
                 cx_ok = true;
             return;
@@ -45,6 +46,7 @@ public:
         if (current_retry_cnt > retry)
         {
             turn_all_off();
+            readed = true;
             if (!integrated)
                 cx_ok = true;
             return;
@@ -72,6 +74,8 @@ public:
         if (current_retry_cnt > retry)
         {
             turn_all_off();
+            readed = true;
+
             if (!integrated)
                 cx_ok = true;
             return;
@@ -80,6 +84,19 @@ public:
         motor_reverse = sensor_out;
 
         read_on = mode_door;
+    }
+
+    void reprove()
+    {
+        static const int time = answer_timeout;
+        static unsigned long current_time = 0;
+    
+        if (current_retry_cnt <= retry)
+            current_time=millis();
+    
+        if(millis() - current_time < time)return;
+
+        cx_erro = true;
     }
 
 private:
