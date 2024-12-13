@@ -5,3 +5,6 @@ extern int speed;
 extern int retry_cnt;
 
 extern CONFIG_FILE config_file_commands;
+
+extern bool cx_ok;
+extern bool cx_erro;

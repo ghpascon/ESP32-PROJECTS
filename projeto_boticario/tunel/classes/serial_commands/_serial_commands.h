@@ -17,6 +17,27 @@ public:
 
     void functions()
     {
+        check_serial();
         check_serial_display();
+    }
+
+private:
+    void check_serial()
+    {
+        if (!Serial.available())
+            return;
+        String cmd_original = Serial.readStringUntil('\n');
+        cmd_original.replace("\r", "");
+        cmd_original.replace("\n", "");
+        String cmd = cmd_original;
+        cmd.replace(" ", "");
+        cmd.toLowerCase();
+
+        if (cmd.startsWith("#cx:"))
+        {
+            cmd.replace("#cx:", "");
+            cx_ok = cmd.startsWith("ok");
+            cx_erro = !cx_ok;
+        }
     }
 };
