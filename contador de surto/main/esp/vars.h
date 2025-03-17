@@ -24,10 +24,15 @@ String display_message = "Surge Counter 2024";
 
 bool need_post = false;
 
+int qtd_raios = 0;
+
 String nome;
 String rede;
 String senha;
 String url;
+String tipo;
+String id_cliente;
+String Authorization;
 
 // String api = "http://52.67.141.45:8080/ws/sensors/sendSensorInformation";
 

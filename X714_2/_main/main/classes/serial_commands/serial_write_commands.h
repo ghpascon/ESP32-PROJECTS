@@ -17,7 +17,8 @@ public:
         if (sep_index == -1)
         {
             Serial.println("#E_NO_SEP");
-            X714_USB.println("#E_NO_SEP");
+            if(!simple_send)
+                X714_USB.println("#E_NO_SEP");
             return;
         }
         current_epc = cmd.substring(0, sep_index);
@@ -27,7 +28,8 @@ public:
         if (sep_index == -1)
         {
             Serial.println("#E_NO_PASSWORD");
-            X714_USB.println("#E_NO_PASSWORD");
+            if(!simple_send)
+                X714_USB.println("#E_NO_PASSWORD");
             return;
         }
         new_epc = cmd.substring(0, passowrd_index);
@@ -45,13 +47,15 @@ public:
         if (password.length() != password_size)
         {
             Serial.println("#E_PASSWORD_LENGTH");
-            X714_USB.println("#E_PASSWORD_LENGTH");
+            if(!simple_send)
+                X714_USB.println("#E_PASSWORD_LENGTH");
             return;
         }
         if ((current_epc != "null" && current_epc.length() != tag_size) || new_epc.length() != tag_size)
         {
             Serial.println("#E_TAG_LENGTH");
-            X714_USB.println("#E_TAG_LENGTH");
+            if(!simple_send)
+                X714_USB.println("#E_TAG_LENGTH");
             return;
         }
 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 Web Server</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+    <div class=container0>
+
+      <div class=container1>
+        <h1>SmartX Tunel RFID</h1>
+      </div>
+
+      <div class=container1>
+        <label id="current_time">CURRENT TIME</label>
+      </div>      
+
+      <div class=container1>
+        <div class=container2>  
+          <button id='cx_ok_bt' style="background-color: #00ff00;" onclick="fetch('/cx_ok_bt')" enabled>CX OK</button>\
+        </div>   
+        <div class=container2>  
+          <button id='cx_erro_bt' style="background-color: #ff0000;" onclick="fetch('/cx_erro_bt')" enabled>CX ERRO</button>\
+        </div>                              
+      </div>      
+
+      <div class="container1">
+        <button id='infinit_retry' onclick="fetch('/infinit_retry')" enabled>RETRY MAX</button>\
+      </div>
+
+      <div class=container1>
+          <div class=container1>
+            <label>STATUS DO TUNEL:</label>
+          </div>
+          <div class=container1>
+            <label class=bordered id="tunel_status"></label>
+        </div>
+      </div>
+    </div>
+</body>
+
+<script>
+
+function update_time() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/time", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var label = document.getElementById("current_time");
+            label.innerHTML = xhr.responseText;
+        }
+    }
+    xhr.send();
+}
+
+function update_status() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/status", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var label = document.getElementById("tunel_status");
+            label.innerHTML = xhr.responseText;
+        }
+    }
+    xhr.send();
+}
+
+function update_html(){
+  update_time();
+  update_status();
+}
+setInterval(update_html, 500);
+
+</script>
+</html>

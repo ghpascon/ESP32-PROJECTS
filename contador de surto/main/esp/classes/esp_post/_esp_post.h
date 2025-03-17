@@ -47,9 +47,6 @@ public:
         if (!online)
             return;
 
-        if (posted)
-            return;
-
         make_post(to_post);
     }
 

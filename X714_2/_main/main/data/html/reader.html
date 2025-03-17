@@ -33,11 +33,15 @@
     
     <div class="container1">
       <div class="container_display">
-        <label>reading:</label>
+        <label>Total:</label>
+        <label id="total_lidas"></label>
+      </div>      
+      <div class="container_display">
+        <label>Reading:</label>
         <label id="reading"></label>
       </div>
       <div class="container_display">
-        <label>temperature:</label>
+        <label>Temperature:</label>
         <label id="temperature"></label>
       </div>
     </div>
@@ -70,6 +74,7 @@
     .then((response) => response.json())
     .then((data) => {
       document.getElementById("reading").innerText = data.reading;
+      document.getElementById("total_lidas").innerText = data.total_tags;
       document.getElementById("temperature").innerText = data.temperature;
       document.getElementById("total_tags").innerText = data.total_tags;
       document.getElementById("read_button").innerText =
@@ -99,7 +104,7 @@
       });
     })
     .catch((error) => console.error("Error fetching data:", error));
-}
+  }
   setInterval(att_table, 1000);
 </script>
 </html>

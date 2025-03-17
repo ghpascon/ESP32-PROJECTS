@@ -32,7 +32,8 @@ public:
 		}
 		last_packs_read[0].replace("{total}", String(max_tags));
 		Serial.println(serial_pack);
-		X714_USB.println(serial_pack);
+		if (!simple_send)
+			X714_USB.println(serial_pack);
 
 		for (int i = 0; i < max_packs; i++)
 		{

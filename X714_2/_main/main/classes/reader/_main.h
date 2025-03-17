@@ -68,7 +68,8 @@ public:
 		else
 		{
 			Serial.println("#SETUP_DONE");
-			X714_USB.println("#SETUP_DONE");
+			if (!simple_send)
+				X714_USB.println("#SETUP_DONE");
 			setup_done = true;
 		}
 	}

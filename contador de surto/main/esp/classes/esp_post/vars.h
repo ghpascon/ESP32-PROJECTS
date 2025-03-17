@@ -1,6 +1,6 @@
 #include <WiFi.h>
-#include <AsyncHTTPRequest_Generic.h>
-AsyncHTTPRequest *request = new AsyncHTTPRequest();
+#include <HTTPClient.h>
+HTTPClient http;
 
 extern String nome;
 extern String rede;
@@ -13,3 +13,4 @@ bool posted = false;
 extern bool need_post;
 
 extern String api_status;
+extern String Authorization;

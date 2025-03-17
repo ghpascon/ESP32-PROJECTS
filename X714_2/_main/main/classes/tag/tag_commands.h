@@ -67,8 +67,9 @@ public:
 		current_tag = 0;
 		tags_table = "";
 		Serial.println("#TAGS_CLEARED");
-		X714_USB.println("#TAGS_CLEARED");
-		}
+		if (!simple_send)
+			X714_USB.println("#TAGS_CLEARED");
+	}
 
 private:
 	void current_tag_num()
@@ -81,6 +82,9 @@ private:
 	void display_current_tag(String epc, String tid, String ant, String rssi)
 	{
 		Serial.println("#T+@" + epc + "|" + tid + "|" + ant + "|" + rssi);
-		X714_USB.println("#T+@" + epc + "|" + tid + "|" + ant + "|" + rssi);
-		}
+		if (!simple_send)
+			X714_USB.println("#T+@" + epc + "|" + tid + "|" + ant + "|" + rssi);
+		else
+			X714_USB.println(epc);
+	}
 };

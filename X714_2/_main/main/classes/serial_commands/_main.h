@@ -10,12 +10,11 @@ public:
         Serial.begin(115200);
         Serial2.begin(57600, SERIAL_8N1, rx_reader_module, tx_reader_module);
 
-        USB.VID(0x2222);
+        USB.VID(0x0001);
         USB.PID(0x0001);
 
         USB.manufacturerName("Smartx");
         USB.productName("X714");
-        USB.serialNumber("X714");
         USB.usbAttributes(0x80);
 
         USB.begin();
@@ -58,13 +57,15 @@ private:
         {
             read_on = true;
             Serial.println("#READ:ON");
+            if(!simple_send)
             X714_USB.println("#READ:ON");
         }
         else if (cmd == "#read:off")
         {
             read_on = false;
             Serial.println("#READ:OFF");
-            X714_USB.println("#READ:OFF");
+            if(!simple_send)
+                X714_USB.println("#READ:OFF");
         }
 
         else if (cmd == "#get_tags")
@@ -92,7 +93,8 @@ private:
         else
         {
             Serial.println("#INVALID_CMD");
-            X714_USB.println("#INVALID_CMD");
+            if(!simple_send)
+                X714_USB.println("#INVALID_CMD");
         }
     }
 };

@@ -1,7 +1,8 @@
 const bool debug_mode = false;
 
-const bool one_ant = true;
+const bool one_ant = false;
 
+const bool simple_send=true;
 //pins
 PINS pins;
 

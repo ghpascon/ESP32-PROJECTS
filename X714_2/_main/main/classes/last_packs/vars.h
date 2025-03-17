@@ -7,3 +7,4 @@ extern TAG tags[];
 extern const bool debug_mode;
 
 extern USBCDC X714_USB;
+extern const bool simple_send;

@@ -43,6 +43,8 @@ public:
 		{
 			Serial.println("Lightning Strike Detected!");
 			lightning_distance = lightning.distanceToStorm();
+			if (lightning_distance > 50)
+				return;
 			Serial.print("Approximately: ");
 			Serial.print(lightning_distance);
 			Serial.println("km away!");

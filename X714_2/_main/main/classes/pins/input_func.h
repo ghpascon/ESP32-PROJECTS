@@ -72,18 +72,20 @@ public:
 		static bool last_in_1 = false;
 		static bool last_in_2 = false;
 		static bool last_in_3 = false;
-		
+
 		if (last_in_1 != in_1)
 		{
 			last_in_1 = in_1;
 			Serial.println("#IN_1:" + String(in_1 ? "ON" : "OFF"));
-			X714_USB.println("#IN_1:" + String(in_1 ? "ON" : "OFF"));
+			if (!simple_send)
+				X714_USB.println("#IN_1:" + String(in_1 ? "ON" : "OFF"));
 		}
 
 		if (last_in_2 != in_2)
 		{
 			last_in_2 = in_2;
 			Serial.println("#IN_2:" + String(in_2 ? "ON" : "OFF"));
+			if (!simple_send)
 			X714_USB.println("#IN_2:" + String(in_2 ? "ON" : "OFF"));
 		}
 
@@ -91,7 +93,8 @@ public:
 		{
 			last_in_3 = in_3;
 			Serial.println("#IN_3:" + String(in_3 ? "ON" : "OFF"));
-			X714_USB.println("#IN_3:" + String(in_3 ? "ON" : "OFF"));
+			if (!simple_send)
+				X714_USB.println("#IN_3:" + String(in_3 ? "ON" : "OFF"));
 		}
 	}
 };

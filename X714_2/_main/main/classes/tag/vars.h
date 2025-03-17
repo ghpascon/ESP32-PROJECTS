@@ -18,3 +18,4 @@ extern String last_packs_read[];
 extern bool always_send;
 
 String tags_table = "";
+extern const bool simple_send;
