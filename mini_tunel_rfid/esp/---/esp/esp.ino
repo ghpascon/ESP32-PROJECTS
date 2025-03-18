@@ -8,7 +8,7 @@ void setup() {
   serial_port.setup();
   lcm_display.setup();
   pins.setup();
-  led_rgb.setup();
+  // led_rgb.setup();
 
   if (!LittleFS.begin()) {
     Serial.println("Failed to mount file system");

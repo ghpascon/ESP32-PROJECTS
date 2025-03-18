@@ -9,4 +9,4 @@ url:https://lc-iot-hub.azure-devices.net/devices/{name}/messages/events?api-vers
 tipo:CONTADOR DE RAIO
 id_cliente:2
 
-Authorization:SharedAccessSignature sr=lc-iot-hub.azure-devices.net%2Fdevices%2F{name}&sig=Iz5ai5TZb8HOF3wLzE18gsIAgRgJD4ou21KBkPtvRuM%3D&se=1772856482
+Authorization:
