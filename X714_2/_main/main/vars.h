@@ -1,6 +1,6 @@
 const bool debug_mode = false;
 
-const bool one_ant = false;
+const bool one_ant = true;
 
 const bool simple_send=true;
 //pins
@@ -57,7 +57,7 @@ bool always_send = false;
 //LAST PACKS
 LAST_PACKS last_packs;
 const int max_packs = 10;
-String last_packs_read[max_packs];
+last_packs_read[max_packs];
 
 //global
 byte temperatura = 0;
