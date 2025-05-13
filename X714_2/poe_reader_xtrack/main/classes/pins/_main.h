@@ -14,7 +14,7 @@ public:
 		pinMode(led_ant_pin[0], OUTPUT);
 		pinMode(led_ant_pin[1], OUTPUT);
 		pinMode(led_ant_pin[2], OUTPUT);
-		pinMode(led_ant_pin[3], OUTPUT);
+		pinMode(led_ant_pin[3], INPUT_PULLUP);
 
 		pinMode(gpo_pin[0], OUTPUT);
 		pinMode(gpo_pin[1], OUTPUT);

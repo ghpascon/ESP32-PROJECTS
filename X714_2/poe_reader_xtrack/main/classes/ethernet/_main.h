@@ -2,7 +2,7 @@
 #include "vars.h"
 #include "eth_pins.h"
 #include "eth_callback.h"
-#include "async_post.h"
+#include "post.h"
 
 class ETHERNET_ESP
 {
@@ -30,46 +30,27 @@ public:
             Serial.println("ETH start Failed!");
         }
 #endif
+        client.setInsecure();
     }
 
     void post_tags()
     {
-        const int time = 3000;
+        const int time = 10000;
         static unsigned long current_time = millis();
         if (millis() - current_time < time || !eth_connected || posted)
             return;
+
         current_time = millis();
         if (current_tag == 0)
             return;
 
-        Serial.println("Post tags in " + url);
-        make_post(get_tags_to_post());
-    }
 
-private:
-    String get_tags_to_post()
-    {
-        String xml = "<msg>";
-        xml += "<command>ReportRead</command>";
-        xml += "<data>EVENT=";
-        xml += "";
-        xml += "|DEVICENAME=" + "teste01" + "|ANTENNANAME=1|TAGID=0000000000000000A0000280|</data>";
-        xml += "<cmpl>STATE=APPEARED|DATA1=|DATA2=|DATA3=|DATA4=|DATA5=|</cmpl>";
-        xml += "</msg>";
-
-        // String to_post = "<tags>";
-        // for (int i = 0; i < max_tags; i++)
-        // {
-        //     if (tags[i].epc == "")
-        //         break;
-        //     to_post += "<tag>" + tags[i].epc + "</tag>";
-        // }
-
-        // to_post += "</tags>";
-
+        for (int i = 0; i < max_tags; i++)
+        {
+            tags_to_post[i][0] = tags[i].epc;
+            tags_to_post[i][1] = String(tags[i].ant_number);
+        }
+        create_post_tag();
         tag_commands.clear_tags();
-        Serial.println(xml);
-        return xml;
     }
-
 };

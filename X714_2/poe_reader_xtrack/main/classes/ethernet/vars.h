@@ -5,11 +5,18 @@ String esp_hostname = "esp32-ethernet";
 extern String url;
 
 #include <WiFi.h>
-#include <AsyncHTTPRequest_Generic.h>
-AsyncHTTPRequest *request = new AsyncHTTPRequest();
-bool posted = false;
+#include <HTTPClient.h>
+#include <WiFiClientSecure.h>
+WiFiClientSecure client;
+HTTPClient https;
+
 extern TAG tags[];
 extern int current_tag;
 extern TAG_COMMANDS tag_commands;
 
 extern String esp_name;
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+extern const int max_tags;
+String tags_to_post[1000][2];
+bool posted = false;

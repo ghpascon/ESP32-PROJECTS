@@ -1,6 +1,6 @@
 #include "vars.h"
 
-class CONFIG_FILE 
+class CONFIG_FILE
 {
 private:
 	void writeFile(String to_write)
@@ -57,7 +57,7 @@ private:
 			byte current_power = parameter.substring(0, start_antena_data).toInt();
 			parameter = parameter.substring(start_antena_data + 1);
 
-			 byte current_rssi = parameter.toInt();
+			byte current_rssi = parameter.toInt();
 
 			if (current_power > max_power)
 				current_power = max_power;
@@ -65,7 +65,7 @@ private:
 				current_power = min_power;
 			if (current_rssi < min_rssi)
 				current_rssi = min_rssi;
-				antena_commands.set_antena(current_ant, (current_active == "on" ? true : false), current_power, current_rssi);
+			antena_commands.set_antena(current_ant, (current_active == "on" ? true : false), current_power, current_rssi);
 		}
 
 		else if (parameter.startsWith("session:"))
@@ -107,17 +107,20 @@ private:
 			always_send = (parameter == "on");
 		}
 
-
 		else if (parameter.startsWith("url:"))
 		{
 			parameter.replace("url:", "");
 			url = parameter;
 		}
-
 		else if (parameter.startsWith("esp_name:"))
 		{
 			parameter.replace("esp_name:", "");
 			esp_name = parameter;
+		}
+		else if (parameter.startsWith("buzzer_vol:"))
+		{
+			parameter.replace("buzzer_vol:", "");
+			buzzer_vol = parameter.toInt();
 		}
 	}
 
@@ -137,6 +140,7 @@ public:
 		writeFile("always_send:" + String(always_send ? "on" : "off"));
 		writeFile("url:" + String(url));
 		writeFile("esp_name:" + String(esp_name));
+		writeFile("buzzer_vol:" + String(buzzer_vol));
 	}
 
 	void get_config()

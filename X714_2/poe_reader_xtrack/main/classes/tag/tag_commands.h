@@ -5,7 +5,6 @@ class TAG_COMMANDS
 public:
 	void add_tag(String current_epc, String current_tid, int current_ant, int current_rssi)
 	{
-
 		if (!read_on)
 			return;
 
@@ -14,6 +13,8 @@ public:
 
 		if (ignore_read && last_packs_read[0].indexOf(current_epc) != -1)
 			return;
+
+		buzzer_time = millis();
 
 		if (always_send)
 			display_current_tag(String(current_epc), String(current_tid), String(current_ant), String(current_rssi));

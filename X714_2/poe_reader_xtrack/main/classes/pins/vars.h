@@ -24,3 +24,7 @@ extern bool setup_done;
 extern bool read_on;
 extern String status_value;
 extern bool eth_connected;
+
+extern int current_tag;
+extern unsigned long buzzer_time;
+extern byte buzzer_vol;

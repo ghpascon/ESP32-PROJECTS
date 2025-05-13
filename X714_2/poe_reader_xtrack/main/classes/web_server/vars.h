@@ -47,3 +47,4 @@ extern String status_value;
 
 extern String url;
 extern String esp_name;
+extern byte buzzer_vol;

@@ -2,7 +2,7 @@ const bool debug_mode = false;
 
 const bool one_ant = false;
 
-const bool simple_send=true;
+const bool simple_send=false;
 //pins
 PINS pins;
 
@@ -64,3 +64,5 @@ byte temperatura = 0;
 int gpi_stop_delay = 0;
 String status_value = "";
 bool eth_connected = false;
+unsigned long buzzer_time = 0;
+byte buzzer_vol = 0;
