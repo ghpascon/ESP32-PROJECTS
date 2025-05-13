@@ -4,6 +4,7 @@ extern USBCDC X714_USB;
 #define tx_reader_module 13
 #define rx_reader_module 14
 
+
 extern READER reader_module;
 
 extern const bool debug_mode;

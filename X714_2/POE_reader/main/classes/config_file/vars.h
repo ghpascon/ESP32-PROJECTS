@@ -21,4 +21,3 @@ extern const byte max_power;
 extern const byte min_rssi;
 
 extern int ip_config[4][4];
-extern String url;

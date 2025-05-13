@@ -33,9 +33,6 @@
             <div class="container1">
                 <label>DNS:</label>
             </div>
-            <div class="container1">
-                <label>URL:</label>
-            </div>            
         </div>
         <div class="container2">
             
@@ -44,7 +41,6 @@
                 <input class="placeholder_style_2" type="text" id="GATEWAY" name="GATEWAY"><br>
                 <input class="placeholder_style_2" type="text" id="SUBNET" name="SUBNET"><br>
                 <input class="placeholder_style_2" type="text" id="DNS" name="DNS"><br>
-                <input class="placeholder_style_2" type="text" id="URL" name="URL"><br>
                 <input class="bt_style" type="submit" value="SAVE PARAMETERS">
             </form>
             <iframe name="hidden_iframe" style="display:none;"></iframe>
@@ -80,7 +76,6 @@
             document.getElementById('GATEWAY').value = data.GATEWAY;
             document.getElementById('SUBNET').value = data.SUBNET;
             document.getElementById('DNS').value = data.DNS;
-            document.getElementById('URL').value = data.URL;
         })
         .catch(error => console.error('Erro:', error));
     };

@@ -14,6 +14,7 @@ public:
 
         if (sensor_out && !motor_reverse && current_retry_cnt <= retry)
         {
+            Serial.println("#CURRENT_RETRY:" + String(current_retry_cnt) + "|" + String(retry));
             Serial1.println("#CURRENT_RETRY:" + String(current_retry_cnt) + "|" + String(retry));
             current_retry_cnt++;
         }

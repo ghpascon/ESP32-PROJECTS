@@ -72,6 +72,8 @@ public:
 	}
 	byte get_active_ant()
 	{
+		if (one_ant)
+			return 0x01;
 		byte ants = 0;
 		for (int i = 0; i < ant_qtd; i++)
 		{
@@ -83,18 +85,33 @@ public:
 
 	void set_ant_power()
 	{
-		byte reader_ant_power[] = {
-			0x08,
-			0xff,
-			0x2f,
-			antena[0].power,
-			antena[1].power,
-			antena[2].power,
-			antena[3].power};
-		crcValue = uiCrc16Cal(reader_ant_power, sizeof(reader_ant_power));
-		crc1 = crcValue & 0xFF;
-		crc2 = (crcValue >> 8) & 0xFF;
-		write_bytes(reader_ant_power, sizeof(reader_ant_power), crc1, crc2);
+		if (one_ant)
+		{
+			byte reader_ant_power[] = {
+				0x05,
+				0xff,
+				0x2f,
+				antena[0].power};
+			crcValue = uiCrc16Cal(reader_ant_power, sizeof(reader_ant_power));
+			crc1 = crcValue & 0xFF;
+			crc2 = (crcValue >> 8) & 0xFF;
+			write_bytes(reader_ant_power, sizeof(reader_ant_power), crc1, crc2);
+		}
+		else
+		{
+			byte reader_ant_power[] = {
+				0x08,
+				0xff,
+				0x2f,
+				antena[0].power,
+				antena[1].power,
+				antena[2].power,
+				antena[3].power};
+			crcValue = uiCrc16Cal(reader_ant_power, sizeof(reader_ant_power));
+			crc1 = crcValue & 0xFF;
+			crc2 = (crcValue >> 8) & 0xFF;
+			write_bytes(reader_ant_power, sizeof(reader_ant_power), crc1, crc2);
+		}
 	}
 
 	void set_ant_check()
@@ -147,5 +164,35 @@ public:
 		crc1 = crcValue & 0xFF;
 		crc2 = (crcValue >> 8) & 0xFF;
 		write_bytes(reader_retry_write_times, sizeof(reader_retry_write_times), crc1, crc2);
+	}
+
+	void query_parameters()
+	{
+		byte reader_query[] = {
+			0x09,
+			0xff,
+			0xea,
+			0x00,
+			0x07,
+			0x00,
+			0x02,
+			0x00};
+		crcValue = uiCrc16Cal(reader_query, sizeof(reader_query));
+		crc1 = crcValue & 0xFF;
+		crc2 = (crcValue >> 8) & 0xFF;
+		write_bytes(reader_query, sizeof(reader_query), crc1, crc2);
+	}
+
+	void set_write_power(byte power)
+	{
+		byte reader_time[] = {
+			0x05,
+			0xff,
+			0x79,
+			0x80 + power};
+		crcValue = uiCrc16Cal(reader_time, sizeof(reader_time));
+		crc1 = crcValue & 0xFF;
+		crc2 = (crcValue >> 8) & 0xFF;
+		write_bytes(reader_time, sizeof(reader_time), crc1, crc2);
 	}
 };

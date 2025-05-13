@@ -1,11 +1,9 @@
 #include <ESPAsyncWebServer.h>
-#include <WiFi.h>
-#include <AsyncHTTPRequest_Generic.h>
-
 AsyncWebServer server(80);
 
-AsyncHTTPRequest *request = new AsyncHTTPRequest();
-bool posted = false;
+#include <ArduinoJson.h>
+
+extern const bool one_ant;
 
 extern READER reader_module;
 
@@ -44,9 +42,11 @@ extern bool gpo[];
 extern const int max_packs;
 extern String last_packs_read[];
 
+extern String tags_table;
+extern String status_value;
+
 String IP;
 String GATEWAY;
 String SUBNET;
 String DNS;
-extern String url;
 extern int ip_config[4][4];

@@ -14,8 +14,11 @@ public:
     {
         if (client == 1)
             return;
-
+        // static bool sended = false;
+        // if (sended)
+        //     return;
         Serial1.println("#PERFIL:" + String(mode - 2));
+        // sended = true;
     }
 
     void check()
@@ -58,6 +61,7 @@ public:
     void check_cmd(String cmd, String cmd_original)
     {
         cmd = regex_cmd(cmd);
+        Serial.println(cmd);
         if (cmd.startsWith("#box:"))
         {
             cmd.replace("#box:", "");

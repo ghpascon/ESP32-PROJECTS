@@ -3,10 +3,10 @@
 
 void setup() {
   serial_port.setup();
-
   if (!LittleFS.begin()) {
     return;
   }
+
   esp_task_wdt_init(WATCHDOG_TIMEOUT, true);
   esp_task_wdt_add(NULL);
 
@@ -20,14 +20,10 @@ void setup() {
   last_packs.clear();
 
   pins.setup();
-
-  Serial.println("#SETUP_DONE");
 }
 
 void loop() {
   esp_task_wdt_reset();
-
-  web_server.post();
 
   pins.check_inputs();
 

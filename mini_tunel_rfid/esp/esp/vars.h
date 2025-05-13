@@ -4,10 +4,10 @@ Clientes
 1-Boti
 */
 
-const int client = 0;
+const int client = 1;
 
 const bool debug_mode = false;
-const bool integrated = true;
+const bool integrated = false;
 
 #define WATCHDOG_TIMEOUT 10
 

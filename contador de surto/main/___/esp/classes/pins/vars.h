@@ -1,11 +1,11 @@
 #define surge_pin 36
 #define dps_pin 39
-#define setup_pin 35
+#define setup_pin 12
 
 bool surge = false;
 bool dps = false;
 
-#define out_dps 12
+#define out_dps 35
 
 extern int device_state;
 extern int total_surge_cnt;

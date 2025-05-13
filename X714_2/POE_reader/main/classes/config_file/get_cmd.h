@@ -24,8 +24,6 @@ public:
         Serial.println("DNS_2: " + String(ip_config[2][3]));
         Serial.println("DNS_3: " + String(ip_config[3][3]));
         Serial.println();
-        Serial.println("URL: " + url);
-        Serial.println();
     }
 
     void get_ip(String cmd, int pos)

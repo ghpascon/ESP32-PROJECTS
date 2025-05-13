@@ -8,6 +8,7 @@ class ETHERNET_ESP
 public:
     void setup()
     {
+
         IPAddress staticIP(ip_config[0][0], ip_config[1][0], ip_config[2][0], ip_config[3][0]);
         IPAddress gateway(ip_config[0][1], ip_config[1][1], ip_config[2][1], ip_config[3][1]);
         IPAddress subnet(ip_config[0][2], ip_config[1][2], ip_config[2][2], ip_config[3][2]);
@@ -25,7 +26,6 @@ public:
                        ETH_MDIO_PIN, ETH_RESET_PIN, ETH_CLK_MODE))
         {
             Serial.println("ETH start Failed!");
-            ESP.restart();
         }
 #else
         if (!ETH.begin(ETH_PHY_W5500, 1, ETH_CS_PIN, ETH_INT_PIN, ETH_RST_PIN,
@@ -33,14 +33,15 @@ public:
                        ETH_SCLK_PIN, ETH_MISO_PIN, ETH_MOSI_PIN))
         {
             Serial.println("ETH start Failed!");
-            ESP.restart();
         }
 #endif
 
-        if (ETH.config(staticIP, gateway, subnet, dns, dns) == false)
+        if (dhcp)
+            return;
+
+        if (!ETH.config(staticIP, gateway, subnet, dns, dns) == false)
         {
             Serial.println("Configuration failed.");
-            ESP.restart();
         }
     }
-  };
+};

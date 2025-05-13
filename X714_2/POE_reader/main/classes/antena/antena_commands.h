@@ -15,20 +15,13 @@ public:
 
 	void set_power_all(byte set_power)
 	{
-		if (set_power < min_power)
-		{
-			set_power = min_power;
-		}
-		if (set_power > max_power)
-		{
-			set_power = max_power;
-		}
+		set_power = constrain(set_power, min_power, max_power);
 
 		for (int i = 0; i < ant_qtd; i++)
 		{
 			antena[i].power = set_power;
 		}
 
-		Serial.println(set_power, DEC);
+		Serial.print(" - " + String(set_power, DEC));
 	}
 };
