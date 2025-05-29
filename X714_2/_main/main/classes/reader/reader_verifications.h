@@ -56,7 +56,7 @@ public:
 
 	void reset_no_read()
 	{
-		const int timeout_no_read = 600000;
+		const int timeout_no_read = 1800000;
 		static unsigned long current_timeout_no_read = 0;
 		if (read_on)
 			current_timeout_no_read = millis();

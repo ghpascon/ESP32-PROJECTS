@@ -23,3 +23,4 @@ extern const byte min_rssi;
 extern String url;
 extern String esp_name;
 extern byte buzzer_vol;
+extern bool buzzer_on;

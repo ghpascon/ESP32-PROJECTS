@@ -66,3 +66,4 @@ String status_value = "";
 bool eth_connected = false;
 unsigned long buzzer_time = 0;
 byte buzzer_vol = 0;
+bool buzzer_on = false;

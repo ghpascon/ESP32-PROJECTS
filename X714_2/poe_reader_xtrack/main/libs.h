@@ -18,7 +18,7 @@
 
 #include "classes/last_packs/_main.h"
 
-#include "classes/reader/_main.h"
+#include "classes/reader_/_main.h"
 
 #include "classes/serial_commands/_main.h"
 

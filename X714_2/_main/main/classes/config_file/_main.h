@@ -106,6 +106,12 @@ private:
 			parameter.replace("always_send:", "");
 			always_send = (parameter == "on");
 		}
+
+		else if (parameter.startsWith("simple_send:"))
+		{
+			parameter.replace("simple_send:", "");
+			simple_send = (parameter == "on");
+		}
 	}
 
 public:
@@ -122,6 +128,7 @@ public:
 		writeFile("gpi_stop_delay:" + String(gpi_stop_delay));
 		writeFile("ignore_read:" + String(ignore_read ? "on" : "off"));
 		writeFile("always_send:" + String(always_send ? "on" : "off"));
+		writeFile("simple_send:" + String(simple_send ? "on" : "off"));
 	}
 
 	void get_config()

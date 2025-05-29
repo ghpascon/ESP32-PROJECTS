@@ -28,3 +28,4 @@ extern bool eth_connected;
 extern int current_tag;
 extern unsigned long buzzer_time;
 extern byte buzzer_vol;
+extern bool buzzer_on;

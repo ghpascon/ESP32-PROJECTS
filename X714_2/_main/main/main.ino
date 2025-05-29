@@ -20,6 +20,7 @@ void setup() {
   rgb.setup();
 
   pins.setup();
+  delay(500);
 }
 
 void loop() {

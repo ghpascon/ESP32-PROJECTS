@@ -1,6 +1,9 @@
 #include <ESPAsyncWebServer.h>
 AsyncWebServer server(80);
 
+#include <AsyncTCP.h>
+#include <Update.h>
+
 extern const bool one_ant;
 
 extern READER reader_module;
@@ -41,3 +44,7 @@ extern const int max_packs;
 extern String last_packs_read[];
 
 extern String tags_table;
+extern bool simple_send;
+
+extern USBCDC X714_USB;
+extern bool simple_send;

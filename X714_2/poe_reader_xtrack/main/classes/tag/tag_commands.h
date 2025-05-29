@@ -14,8 +14,6 @@ public:
 		if (ignore_read && last_packs_read[0].indexOf(current_epc) != -1)
 			return;
 
-		buzzer_time = millis();
-
 		if (always_send)
 			display_current_tag(String(current_epc), String(current_tid), String(current_ant), String(current_rssi));
 
@@ -26,6 +24,7 @@ public:
 			if (tags[i].epc == "" || tags[i].tid == "")
 				break;
 		}
+		buzzer_time = millis();
 
 		tags[current_tag].epc = current_epc;
 		tags[current_tag].tid = current_tid;

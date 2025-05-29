@@ -1,8 +1,8 @@
 const bool debug_mode = false;
 
-const bool one_ant = false;
+const bool one_ant = true;
 
-const bool simple_send=true;
+bool simple_send=false;
 //pins
 PINS pins;
 
@@ -62,3 +62,4 @@ String last_packs_read[max_packs];
 //global
 byte temperatura = 0;
 int gpi_stop_delay = 0;
+

@@ -21,6 +21,7 @@ void WiFiEvent(arduino_event_id_t event)
         Serial.print(", ");
         Serial.print(ETH.linkSpeed());
         Serial.println("Mbps");
+
         eth_connected = true;
         break;
     case ARDUINO_EVENT_ETH_DISCONNECTED:

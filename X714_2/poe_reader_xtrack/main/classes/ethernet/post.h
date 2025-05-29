@@ -45,13 +45,13 @@ static void post_task(void *pvParameters)
     Serial.println();
     Serial.println("Start posting tags");
 
-    for (int i = 0; i < max_tags; i++)
-    {
-        if (tags_to_post[i][0] == "")
-            break;
-        make_post(get_tag_post(tags_to_post[i][0], tags_to_post[i][1]));
-        tags_to_post[i][0] = "";
-    }
+    // for (int i = 0; i < max_tags; i++)
+    // {
+    //     if (tags_to_post[i][0] == "")
+    //         break;
+    //     make_post(get_tag_post(tags_to_post[i][0], tags_to_post[i][1]));
+    //     tags_to_post[i][0] = "";
+    // }
 
     posted = false;
 

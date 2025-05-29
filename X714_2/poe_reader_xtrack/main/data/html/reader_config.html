@@ -65,6 +65,18 @@
           
           <tr>
             <td>
+              <label>Buzzer ON:</label>
+            </td>
+            <td>
+              <select id="buzzer_on" name="buzzer_on">
+                <option value="0">0</option>
+                <option value="1">1</option>
+              </select>
+            </td>
+          </tr>
+          
+          <tr>
+            <td>
               <label>Buzzer VOL:</label>
             </td>
             <td>
@@ -119,6 +131,7 @@
       document.getElementById("session").value =  data.session;
       document.getElementById("gpi_stop_delay").value = data.gpi_stop_delay;
       document.getElementById("buzzer_vol").value = data.buzzer_vol;
+      document.getElementById("buzzer_on").value = data.buzzer_on;
     })
     .catch((error) => {
       console.error("Error fetching session data:", error);

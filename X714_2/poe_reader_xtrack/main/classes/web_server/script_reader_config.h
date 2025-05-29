@@ -18,6 +18,11 @@ void config_reader_script()
             buzzer_vol = (request->getParam("buzzer_vol", true)->value()).toInt();
         }
 
+        if (request->hasParam("buzzer_on", true))
+        {
+            buzzer_on = (request->getParam("buzzer_on", true)->value()).toInt() == 1;
+        }
+
         if (debug_mode)
         {
             Serial.println("DADOS SALVOS COM SUCESSO:");
@@ -29,11 +34,12 @@ void config_reader_script()
 
     server.on("/get_reader_config", HTTP_GET, [](AsyncWebServerRequest *request)
               {
-            const int row = 3;
+            const int row = 4;
             const int col = 2;
             const String json_kv[row][col] = {
                 {"session", String(session, DEC)},
                 {"gpi_stop_delay", String(gpi_stop_delay)},
+                {"buzzer_on", String(buzzer_on?1:0)},
                 {"buzzer_vol", String(buzzer_vol)}};
 
             String json = "{";
@@ -48,11 +54,12 @@ void config_reader_script()
 
     server.on("/table_reader_att", HTTP_GET, [](AsyncWebServerRequest *request)
               {
-        int row = 3;
+        int row = 4;
         int col = 2;
         String data[row][col] = {
             {"SESSION:", String(session, DEC)},
             {"GPI STOP DELAY:", String(gpi_stop_delay) + "ms"},
+            {"buzzer_on", String(buzzer_on ? 1 : 0)},
             {"buzzer_vol:", String(buzzer_vol)}};
 
         String json = "[";

@@ -122,6 +122,12 @@ private:
 			parameter.replace("buzzer_vol:", "");
 			buzzer_vol = parameter.toInt();
 		}
+
+		else if (parameter.startsWith("buzzer_on:"))
+		{
+			parameter.replace("buzzer_on:", "");
+			buzzer_on = (parameter == "on");
+		}
 	}
 
 public:
@@ -141,6 +147,7 @@ public:
 		writeFile("url:" + String(url));
 		writeFile("esp_name:" + String(esp_name));
 		writeFile("buzzer_vol:" + String(buzzer_vol));
+		writeFile("buzzer_on:" + String(buzzer_on ? "on" : "off"));
 	}
 
 	void get_config()

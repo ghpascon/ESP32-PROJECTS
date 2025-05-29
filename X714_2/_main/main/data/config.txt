@@ -8,3 +8,4 @@ gpi_start:off
 gpi_stop_delay:0
 ignore_read:off
 always_send:off
+simple_send:on

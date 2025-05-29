@@ -36,6 +36,8 @@ private:
 			if (reader_cmd == "01" && cmd.substring(6, 8) == "f8")
 			{
 				Serial.println("#ANT_ERROR: ");
+				if (!simple_send)
+					X714_USB.println("#ANT_ERROR: ");
 			}
 
 			else if (reader_cmd == "03" || reader_cmd == "04")
@@ -43,22 +45,30 @@ private:
 				if (cmd.substring(6, 8) == "00")
 				{
 					Serial.println("#TAG_WRITE_SUCESSO");
+					if (!simple_send)
+						X714_USB.println("#TAG_WRITE_SUCESSO");
 				}
 				else
 				{
 					Serial.println("#TAG_WRITE_ERRO");
+					if (!simple_send)
+						X714_USB.println("#TAG_WRITE_ERRO");
 				}
 			}
 
 			else if (debug_mode)
 			{
 				Serial.println("#SUCESSO");
+				if (!simple_send)
+					X714_USB.println("#SUCESSO");
 			}
 			step++;
 		}
 		else
 		{
 			Serial.println("#ERRO: " + status);
+			if (!simple_send)
+				X714_USB.println("#ERRO: " + status);
 			return;
 		}
 
@@ -72,6 +82,8 @@ private:
 			String current_temp = cmd.substring(cmd.length() - 6, cmd.length() - 4);
 			temperatura = (byte)strtol(current_temp.c_str(), NULL, 16);
 			Serial.println("#TEMPERATURA:" + String(temperatura, DEC));
+			if (!simple_send)
+				X714_USB.println("#TEMPERATURA:" + String(temperatura, DEC));
 		}
 	}
 

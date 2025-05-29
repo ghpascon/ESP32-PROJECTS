@@ -122,7 +122,7 @@ void decodifica_w1() {
       soma = soma * 2;
       card[n1] = 0;
     }
-    Serial.println(String(decimal) + "_w1");
+    Serial.println("#w1:"+String(decimal));
 
     n1 = 0;
     decimal = 0;
@@ -139,7 +139,7 @@ void decodifica_w2() {
       soma = soma * 2;
       card[n2] = 0;
     }
-    Serial.println(String(decimal) + "_w2");
+    Serial.println("#w2:"+String(decimal));
 
     n2 = 0;
     decimal = 0;
@@ -162,7 +162,7 @@ void botao_2() {
 void emergencia() {
   if (digitalRead(bte) == HIGH) {
     if (ae == 0) {
-      Serial.println("emergencia|on");
+      Serial.println("#emg:on");
       digitalWrite(emg, HIGH);
       digitalWrite(p1_out, LOW);
       digitalWrite(p2_out, LOW);
@@ -171,7 +171,7 @@ void emergencia() {
   } else {
     if (ae == 1) {
       if (emerg.repeat()) {
-        Serial.println("emergencia|off");
+        Serial.println("#emg:off");
         digitalWrite(emg, LOW);
         digitalWrite(p1_out, HIGH);
         digitalWrite(p2_out, HIGH);
@@ -184,16 +184,18 @@ void emergencia() {
 void verifica_serial() {
   if (Serial.available()) {
     cmd = Serial.readStringUntil('\n');
-    if (cmd == "abre_p1" && digitalRead(porta_fechada) == LOW) {
+    if (cmd == "#open:1" && digitalRead(porta_fechada) == LOW) {
       abre_porta_1();
     }
-    if (cmd == "abre_p2" && digitalRead(porta_fechada) == LOW) {
+    if (cmd == "#open:2" && digitalRead(porta_fechada) == LOW) {
       abre_porta_2();
     }
   }
 }
 
 void abre_porta_1() {
+  Serial.println("#open:1");
+  delay(200);
   digitalWrite(r700, HIGH);
   digitalWrite(p1_out, LOW);
   delay(2000);
@@ -201,6 +203,8 @@ void abre_porta_1() {
 }
 
 void abre_porta_2() {
+  Serial.println("#open:2");
+  delay(200);
   digitalWrite(r700, HIGH);
   digitalWrite(p2_out, LOW);
   delay(2000);

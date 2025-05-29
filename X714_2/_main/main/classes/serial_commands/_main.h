@@ -90,6 +90,32 @@ private:
             reader_module.setup_reader();
         }
 
+        else if (cmd == "#get_state")
+        {
+            Serial.println(read_on?"#READING":"#IDLE");
+            if (!simple_send)
+                X714_USB.println(read_on ? "#READING" : "#IDLE");
+        }
+
+        else if (cmd == "#get_power")
+        {
+            Serial.println("#POWER:" + String(antena[0].power));
+            if (!simple_send)
+                X714_USB.println("#POWER:" + String(antena[0].power));
+        }
+
+        else if (cmd == "#get_session")
+        {
+            Serial.println("#SESSION:" + String(session));
+            if (!simple_send)
+                X714_USB.println("#SESSION:" + String(session));
+        }
+
+        else if (cmd == "#restart")
+        {
+            ESP.restart();
+        }
+
         else
         {
             Serial.println("#INVALID_CMD");
@@ -98,3 +124,4 @@ private:
         }
     }
 };
+

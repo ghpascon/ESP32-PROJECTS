@@ -36,6 +36,8 @@ public:
 		if (millis() - current_answer_timeout > answer_timeout && setup_done)
 		{
 			Serial.println("#TIMEOUT");
+			if (!simple_send)
+				X714_USB.println("#TIMEOUT");
 			answer_rec = true;
 			setup_done = false;
 			step = 0;

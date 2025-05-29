@@ -17,12 +17,12 @@ public:
 
 	void set_buzzer()
 	{
-		const int time = 1000;
+		const int time = 2000;
 
 		if (millis() < time)
 			return;
 
-		if (millis() - buzzer_time < time)
+		if (millis() - buzzer_time < time && buzzer_on)
 		{
 			pinMode(led_ant_pin[3], OUTPUT);
 			analogWrite(led_ant_pin[3], 255-buzzer_vol);

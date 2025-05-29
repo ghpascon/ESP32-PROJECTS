@@ -21,10 +21,44 @@ public:
 
 	void reader_band()
 	{
-		byte band[] = {0x06, 0xff, 0x22, 0x31, 0x80};
-		crcValue = uiCrc16Cal(band, sizeof(band));
-		crc1 = crcValue & 0xFF;
-		crc2 = (crcValue >> 8) & 0xFF;
+		static bool last_band_state = false;
+		static unsigned long current_last_band = 0;
+		const int interval = 300;
+
+		byte band[5]; 
+		if (!setup_done)
+		{
+			byte temp[] = {0x06, 0xff, 0x22, 0xf4, 0x1a};
+			// byte temp[] = {0x06, 0xff, 0x22, 0x31, 0x80};
+			memcpy(band, temp, sizeof(temp));
+		}
+		else
+		{
+			if (!read_on)
+				return;
+
+			if (millis() - current_last_band < interval)
+				return;
+
+			current_last_band = millis();
+			last_band_state = !last_band_state;
+
+			if (last_band_state)
+			{
+				byte temp[] = {0x06, 0xff, 0x22, 0xcb, 0x00};
+				memcpy(band, temp, sizeof(temp));
+			}
+			else
+			{
+				byte temp[] = {0x06, 0xff, 0x22, 0xf4, 0x1a};
+				memcpy(band, temp, sizeof(temp));
+			}
+		}
+
+		uint16_t crcValue = uiCrc16Cal(band, sizeof(band));
+		byte crc1 = crcValue & 0xFF;
+		byte crc2 = (crcValue >> 8) & 0xFF;
+
 		write_bytes(band, sizeof(band), crc1, crc2);
 	}
 
