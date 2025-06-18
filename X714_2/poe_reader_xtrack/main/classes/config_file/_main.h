@@ -128,6 +128,12 @@ private:
 			parameter.replace("buzzer_on:", "");
 			buzzer_on = (parameter == "on");
 		}
+
+		else if (parameter.startsWith("prefix:"))
+		{
+			parameter.replace("prefix:", "");
+			prefix = parameter;
+		}
 	}
 
 public:
@@ -148,6 +154,7 @@ public:
 		writeFile("esp_name:" + String(esp_name));
 		writeFile("buzzer_vol:" + String(buzzer_vol));
 		writeFile("buzzer_on:" + String(buzzer_on ? "on" : "off"));
+		writeFile("prefix:" + String(prefix));
 	}
 
 	void get_config()

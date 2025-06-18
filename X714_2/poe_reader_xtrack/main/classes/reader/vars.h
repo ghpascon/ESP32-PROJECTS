@@ -38,5 +38,4 @@ extern LAST_PACKS last_packs;
 
 extern byte write_power;
 
-extern USBCDC X714_USB;
 extern const bool simple_send;

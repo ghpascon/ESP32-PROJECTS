@@ -23,6 +23,12 @@ void config_reader_script()
             buzzer_on = (request->getParam("buzzer_on", true)->value()).toInt() == 1;
         }
 
+
+        if (request->hasParam("prefix", true))
+        {
+            prefix = (request->getParam("prefix", true)->value());
+        }
+
         if (debug_mode)
         {
             Serial.println("DADOS SALVOS COM SUCESSO:");
@@ -34,13 +40,15 @@ void config_reader_script()
 
     server.on("/get_reader_config", HTTP_GET, [](AsyncWebServerRequest *request)
               {
-            const int row = 4;
+            const int row = 5;
             const int col = 2;
             const String json_kv[row][col] = {
                 {"session", String(session, DEC)},
                 {"gpi_stop_delay", String(gpi_stop_delay)},
                 {"buzzer_on", String(buzzer_on?1:0)},
-                {"buzzer_vol", String(buzzer_vol)}};
+                {"buzzer_vol", String(buzzer_vol)},
+                {"prefix", String(prefix)}
+                };
 
             String json = "{";
             for (int i = 0; i < row; i++) {
@@ -54,14 +62,15 @@ void config_reader_script()
 
     server.on("/table_reader_att", HTTP_GET, [](AsyncWebServerRequest *request)
               {
-        int row = 4;
+        int row = 5;
         int col = 2;
         String data[row][col] = {
             {"SESSION:", String(session, DEC)},
             {"GPI STOP DELAY:", String(gpi_stop_delay) + "ms"},
             {"buzzer_on", String(buzzer_on ? 1 : 0)},
-            {"buzzer_vol:", String(buzzer_vol)}};
-
+            {"buzzer_vol", String(buzzer_vol)},
+            {"prefix", String(prefix)}
+            };
         String json = "[";
         for (int i = 0; i < row; i++) {
         if (i > 0) json += ",";

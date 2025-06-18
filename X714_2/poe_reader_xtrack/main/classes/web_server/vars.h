@@ -3,6 +3,9 @@ AsyncWebServer server(80);
 
 #include <ArduinoJson.h>
 
+#include <AsyncTCP.h>
+#include <Update.h>
+
 extern const bool one_ant;
 
 extern READER reader_module;
@@ -49,3 +52,5 @@ extern String url;
 extern String esp_name;
 extern byte buzzer_vol;
 extern bool buzzer_on;
+
+extern String prefix;

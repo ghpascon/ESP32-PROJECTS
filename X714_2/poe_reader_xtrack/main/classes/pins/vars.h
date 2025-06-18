@@ -12,7 +12,7 @@ extern bool read_on;
 extern int gpi_stop_delay;
 
 extern const int ant_qtd;
-const int led_ant_pin[] = {18, 17, 16, 15};
+const int led_ant_pin[] = {41, 40, 39, 15};
 
 const int gpo_qtd = 3;
 const int gpo_pin[gpo_qtd] = {20, 19, 8};

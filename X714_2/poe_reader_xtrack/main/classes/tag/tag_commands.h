@@ -8,8 +8,7 @@ public:
 		if (!read_on)
 			return;
 
-		if (antena[current_ant - 1].rssi < current_rssi)
-			return;
+  		if (!startsWithAny(current_epc)) return;
 
 		if (ignore_read && last_packs_read[0].indexOf(current_epc) != -1)
 			return;
@@ -78,5 +77,28 @@ private:
 	void display_current_tag(String epc, String tid, String ant, String rssi)
 	{
 		Serial.println("#T+@" + epc + "|" + tid + "|" + ant + "|" + rssi);
+	}
+
+
+	bool startsWithAny(String current_epc) {
+		if (prefix.length()==0) return true;
+		current_epc.toLowerCase();  // modifica current_epc para minúsculo no local
+
+		int start = 0;
+		while (start < prefix.length()) {
+			int commaIndex = prefix.indexOf(',', start);
+			if (commaIndex == -1)
+				commaIndex = prefix.length();
+
+			String prefix_entry = prefix.substring(start, commaIndex);
+			prefix_entry.trim();
+			prefix_entry.toLowerCase();
+
+			if (current_epc.startsWith(prefix_entry)) {
+				return true;
+			}
+			start = commaIndex + 1;
+		}
+		return false;
 	}
 };

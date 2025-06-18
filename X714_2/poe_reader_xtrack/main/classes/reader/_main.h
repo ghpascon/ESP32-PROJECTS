@@ -27,10 +27,7 @@ public:
 		periodic_reader_loop();
 
 		if (read_on && answer_rec)
-		{
 			read_on_functions();
-			reader_band();
-		}
 	}
 
 	void setup_reader()
@@ -63,7 +60,7 @@ public:
 		else if (step == 9)
 			set_ant_pulse();
 		else if (step == 10)
-			set_retry_write(0x05);
+			set_retry_write(0x03);
 		else if (step == 11)
 			query_parameters();
 		else if (step == 12)
@@ -71,8 +68,6 @@ public:
 		else
 		{
 			Serial.println("#SETUP_DONE");
-			if (!simple_send)
-				X714_USB.println("#SETUP_DONE");
 			setup_done = true;
 		}
 	}

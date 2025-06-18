@@ -17,3 +17,4 @@ extern bool always_send;
 String tags_table = "";
 extern const bool simple_send;
 extern unsigned long buzzer_time;
+extern String prefix;

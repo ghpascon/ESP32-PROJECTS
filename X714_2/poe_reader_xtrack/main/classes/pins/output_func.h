@@ -25,7 +25,7 @@ public:
 		if (millis() - buzzer_time < time && buzzer_on)
 		{
 			pinMode(led_ant_pin[3], OUTPUT);
-			analogWrite(led_ant_pin[3], 255-buzzer_vol);
+			analogWrite(led_ant_pin[3], 255 - buzzer_vol);
 		}
 		else
 			pinMode(led_ant_pin[3], INPUT_PULLUP);
@@ -42,9 +42,9 @@ public:
 			status_value = "";
 		if (!eth_connected)
 		{
-			digitalWrite(led_ant_pin[0], LOW); // r
-			digitalWrite(led_ant_pin[1], LOW); // g
-			digitalWrite(led_ant_pin[2], LOW); // b
+			digitalWrite(led_ant_pin[0], HIGH); // r
+			digitalWrite(led_ant_pin[1], HIGH); // g
+			digitalWrite(led_ant_pin[2], LOW);	// b
 		}
 		else if (!setup_done)
 		{

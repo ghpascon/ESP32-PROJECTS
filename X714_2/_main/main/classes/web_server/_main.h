@@ -24,8 +24,10 @@ public:
 
     void config_web_server()
     {
-        String mac = WiFi.macAddress();
-        const String ssid = "X714-" + String(mac);
+        uint64_t chipid = ESP.getEfuseMac(); // Obtém o MAC único
+        char id_str[13];
+        sprintf(id_str, "%012llX", chipid);           // Converte para string hexadecimal
+        const String ssid = "X714-" + String(id_str); // Cria o SSID
         const char *password = "smartx12345";
         WiFi.softAP(ssid.c_str(), password);
     }
