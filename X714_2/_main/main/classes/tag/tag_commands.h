@@ -1,8 +1,8 @@
-#include "vars.h"
+# include "vars.h"
 
 class TAG_COMMANDS
 {
-public:
+	public:
 	void add_tag(String current_epc, String current_tid, int current_ant, int current_rssi)
 	{
 		pins.ant_led_turn_on(current_ant);
@@ -55,6 +55,20 @@ public:
 		clear_tags();
 	}
 
+	void tag_data_display_all()
+	{
+		String tags_to_send = "#tags:";
+		for (int i = 0; i < max_tags; i++)
+		{
+			if (tags[i].epc == "")
+				break;
+			tags_to_send += "@" + tags[i].epc + "|" + tags[i].tid + "|" + tags[i].ant_number + "|" + tags[i].rssi;
+		}
+		Serial.println(tags_to_send);
+		X714_USB.println(tags_to_send);
+		clear_tags();
+	}
+
 	void clear_tags()
 	{
 		for (int i = 0; i < max_tags; i++)
@@ -71,7 +85,7 @@ public:
 			X714_USB.println("#TAGS_CLEARED");
 	}
 
-private:
+	private:
 	void current_tag_num()
 	{
 		(current_tag < max_tags - 1) ? current_tag++ : current_tag = 0;

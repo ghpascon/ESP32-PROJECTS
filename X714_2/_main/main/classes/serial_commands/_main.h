@@ -73,6 +73,11 @@ private:
             tag_commands.tag_data_display();
         }
 
+        else if (cmd == "#get_tags_all")
+        {
+            tag_commands.tag_data_display_all();
+        }        
+
         else if (cmd == "#clear")
         {
             tag_commands.clear_tags();
