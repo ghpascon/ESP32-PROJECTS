@@ -9,3 +9,5 @@ gpi_stop_delay:0
 ignore_read:off
 always_send:off
 simple_send:off
+hotspot_on:on
+keyboard:off

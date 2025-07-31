@@ -1,7 +1,0 @@
-{
-    "editor.defaultFoldingRangeProvider": "ms-vscode.cpptools",
-    "editor.defaultFormatter": "ms-vscode.cpptools",
-    "[csharp]": {
-        "editor.defaultFormatter": "csharpier.csharpier-vscode"
-    }
-}
