@@ -83,6 +83,14 @@ public:
             ESP.restart();
         }
 
+        else if (cmd == "#get_serial")
+        {
+            uint64_t chipid = ESP.getEfuseMac();
+            char id_str[13];
+            sprintf(id_str, "%012llX", chipid);
+            myserial.write("#SERIAL:" + String(id_str));
+        }
+
         else
         {
             myserial.write("#INVALID_CMD");

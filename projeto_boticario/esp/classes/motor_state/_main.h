@@ -52,7 +52,7 @@ private:
             turn_off = true;
         }
 
-        if (!turn_off)
+        if (!turn_off || (sensor_in || sensor_out))
             current_time_turn_off = millis();
 
         if (millis() - current_time_turn_off > time_turn_off)
@@ -66,7 +66,7 @@ private:
 
     void check_sensors()
     {
-            check_door();
+        check_door();
 
         reprove();
     }

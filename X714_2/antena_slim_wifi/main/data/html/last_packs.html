@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>X714 READER CONFIG</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+</head>
+
+<body>
+  <div class="container0">
+    <div class="container1">
+      <div class="container2">
+        <label style="position: relative; top: 20px" class="SMTX"
+        >X714-SMARTX</label
+        >
+      </div>
+      
+      <div class="container2">
+        <button onclick="window.location.href='/'">HOME</button>
+      </div>
+    </div>
+    
+    <br>
+    
+    <div class="container1">
+      <button onclick="window.location.href='/reader'">READER</button>
+    </div>
+    
+    <br>
+    
+    <div class="container1">
+      <table class="table_last_packs" id="last_packs_table">
+        <thead>
+          <tr>
+            <th>LAST PACKS</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+<script>
+  function update_html() {
+    update_elements();
+  }
+  setInterval(update_html, 500);
+  
+  function update_elements() {
+    fetch("/table_last_packs_att")
+    .then((response) => response.json())
+    .then((data) => {
+      const tbody = document
+      .getElementById("last_packs_table")
+      .getElementsByTagName("tbody")[0];
+      tbody.innerHTML = "";
+      data.forEach((row) => {
+        let tr = document.createElement("tr");
+        row.forEach((cell) => {
+          let td = document.createElement("td");
+          // Substitui <br> por quebras de linha reais
+          const parts = cell.split("<br>");
+          parts.forEach((part, index) => {
+            td.appendChild(document.createTextNode(part));
+            if (index < parts.length - 1) {
+              td.appendChild(document.createElement("br"));
+            }
+          });
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    })
+    .catch((error) => console.error("Error fetching data:", error));
+  }
+  
+</script>
+</html>

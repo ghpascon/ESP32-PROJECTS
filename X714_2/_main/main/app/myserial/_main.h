@@ -26,8 +26,20 @@ public:
             return;
 
         if (keyboard)
-            my_keyboard.println(data);
-        my_usb.println(data);
+        {
+            int interval = 10;
+            for (size_t i = 0; i < data.length(); i++)
+            {
+                my_keyboard.write(data[i]);
+                delay(interval);
+                yield();
+            }
+            my_keyboard.write('\n');
+            delay(interval);
+            esp_task_wdt_reset();
+        }
+        else
+            my_usb.println(data);
     }
 
     String check_serial()

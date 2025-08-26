@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Wifi</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+
+  <body>
+    <div class="container1">
+      <div class="container2">
+        <label style="position: relative; top: 20px" class="SMTX"
+          >X714-SMARTX</label
+        >
+      </div>
+      <div class="container2">
+        <button onclick="window.location.href='/'">HOME</button>
+      </div>
+    </div>
+
+    <div class="container1">
+      <div class="container2">
+        <div class="container1">
+          <label>wifi_ssid:</label>
+        </div>
+
+        <div class="container1">
+          <label>wifi_password:</label>
+        </div>
+
+        <div class="container1">
+          <label>wifi_url:</label>
+        </div>
+
+        <div class="container1">
+          <label>wifi_name:</label>
+        </div>
+      </div>
+      <div class="container2">
+        <form
+          action="/save_wifi_parameters"
+          method="POST"
+          target="hidden_iframe"
+        >
+          <input
+            class="placeholder_style_2"
+            type="text"
+            id="wifi_ssid"
+            name="wifi_ssid"
+          /><br />
+          <input
+            class="placeholder_style_2"
+            type="text"
+            id="wifi_password"
+            name="wifi_password"
+          /><br />
+          <input
+            class="placeholder_style_2"
+            type="text"
+            id="wifi_url"
+            name="wifi_url"
+          /><br />
+          <input
+            class="placeholder_style_2"
+            type="text"
+            id="wifi_name"
+            name="wifi_name"
+          /><br />
+          <input class="bt_style" type="submit" value="SAVE PARAMETERS" />
+        </form>
+        <iframe name="hidden_iframe" style="display: none"></iframe>
+        <div class="container2">
+          <button onclick="fetch('/restart')">RESTART</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container1">
+      <table class="table_2" id="dataTable">
+        <thead>
+          <tr>
+            <th>PARAMETER</th>
+            <th>VALUE</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </body>
+
+  <script>
+    window.onload = function () {
+      fetch("/get_wifi_config")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("wifi_ssid").value = data.wifi_ssid;
+          document.getElementById("wifi_password").value = data.wifi_password;
+          document.getElementById("wifi_url").value = data.wifi_url;
+          document.getElementById("wifi_name").value = data.wifi_name;
+        })
+        .catch((error) => console.error("Erro:", error));
+    };
+
+    function update_html() {
+      update_elements();
+    }
+    setInterval(update_html, 500);
+
+    function update_elements() {
+      fetch("/table_wifi_att")
+        .then((response) => response.json())
+        .then((data) => {
+          const tbody = document
+            .getElementById("dataTable")
+            .getElementsByTagName("tbody")[0];
+          tbody.innerHTML = "";
+          data.forEach((row) => {
+            let tr = document.createElement("tr");
+            row.forEach((cell) => {
+              let td = document.createElement("td");
+              td.textContent = cell;
+              tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+          });
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    }
+  </script>
+</html>

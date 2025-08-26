@@ -1,0 +1,17 @@
+antena:1,on,22,150
+antena:2,on,22,150
+antena:3,off,20,150
+antena:4,off,20,150
+session:1
+start_reading:on
+gpi_start:off
+gpi_stop_delay:0
+ignore_read:off
+always_send:off
+simple_send:on
+hotspot_on:on
+keyboard:off
+wifi_ssid:SmartXcomercial
+wifi_password:Smtx321$
+wifi_url:http://192.168.0.8:5000/api/rfid/receive_events
+wifi_name:ANTENNA_SLIM
